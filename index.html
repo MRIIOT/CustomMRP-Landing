@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom MRP - Manufacturing Management for Custom Shops</title>
+    <link rel="icon" type="image/png" href="images/logo_eagle_only.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 50px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 2rem;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+
+        nav a:hover {
+            opacity: 0.8;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 6rem 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            background: white;
+            color: #667eea;
+            padding: 1rem 3rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .cta-button.secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+            margin-left: 1rem;
+        }
+
+        /* Problem Section */
+        .problem {
+            background: #f7f9fc;
+            padding: 5rem 0;
+        }
+
+        .problem h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #2d3748;
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .problem-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.07);
+        }
+
+        .problem-card h3 {
+            color: #e53e3e;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: #2d3748;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #718096;
+            margin-bottom: 4rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+        }
+
+        .feature-card {
+            padding: 2rem;
+            border-radius: 10px;
+            background: white;
+            border: 2px solid #e2e8f0;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+            border-color: #667eea;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            color: #2d3748;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        .feature-card p {
+            color: #4a5568;
+            line-height: 1.7;
+        }
+
+        /* Benefits Section */
+        .benefits {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 5rem 0;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .benefit-card {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .benefit-card h3 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .benefit-card p {
+            opacity: 0.9;
+        }
+
+        /* Who It's For */
+        .audience {
+            padding: 5rem 0;
+            background: #f7f9fc;
+        }
+
+        .audience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .audience-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.07);
+        }
+
+        .audience-card h3 {
+            color: #667eea;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 5rem 0;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        /* Footer */
+        footer {
+            background: #2d3748;
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .features-grid,
+            .benefits-grid,
+            .audience-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-button.secondary {
+                margin-left: 0;
+                margin-top: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="images/logo_eagle_only_transparent.png" alt="Custom MRP Logo">
+                </div>
+                <nav>
+                    <a href="#features">Features</a>
+                    <a href="#benefits">Benefits</a>
+                    <a href="#audience">Who It's For</a>
+                    <a href="#contact">Contact</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Manufacturing Management<br>Built for Custom Shops</h1>
+            <p>Stop forcing your unique, one-off manufacturing into rigid ERP systems. Track every item, manage dependencies, and deliver on time with software designed for custom work.</p>
+            <a href="#contact" class="cta-button">Request a Demo</a>
+            <a href="#features" class="cta-button secondary">Learn More</a>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="problem">
+        <div class="container">
+            <h2>Traditional MRP Systems Fail Custom Manufacturers</h2>
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <h3>❌ Rigid Product Catalogs</h3>
+                    <p>Designed for repetitive production, not one-off custom work. Every project forces you into templates that don't fit.</p>
+                </div>
+                <div class="problem-card">
+                    <h3>❌ Batch-Only Tracking</h3>
+                    <p>Can't answer "which 2 of 5 chairs are done?" You only know the whole process status, not individual items.</p>
+                </div>
+                <div class="problem-card">
+                    <h3>❌ Cross-Department Chaos</h3>
+                    <p>Manual coordination between CNC, fabrication, upholstery. No automated linking when one department needs another.</p>
+                </div>
+                <div class="problem-card">
+                    <h3>❌ Inventory Clutter</h3>
+                    <p>Project-specific materials mixed with permanent stock. Can't tell what's actually available for new work.</p>
+                </div>
+                <div class="problem-card">
+                    <h3>❌ Manual Status Updates</h3>
+                    <p>Constant emails, phone calls, and whiteboard updates. No real-time visibility means everyone asks "what's the status?"</p>
+                </div>
+                <div class="problem-card">
+                    <h3>❌ Hidden Costs & Margins</h3>
+                    <p>Can't track actual material and labor costs per job. You don't know if you made money until it's too late.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">Built Specifically for Custom Manufacturing</h2>
+            <p class="section-subtitle">Every feature designed around the reality of one-off, project-based work</p>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Item-Level Granular Tracking</h3>
+                    <p>Track "2 of 5 chairs complete" not just "process complete." Know exactly which items are ready, enable partial shipments, and identify bottlenecks with precision.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">📋</div>
+                    <h3>Work Order-Centric Design</h3>
+                    <p>Every order is unique. No rigid product catalogs—build what customers actually order. Products are temporary and auto-archive when complete.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Flexible Templates (80/20 Approach)</h3>
+                    <p>Templates provide ~80% standard setup. Easy customization for the ~20% that varies—names, dimensions, quantities. Starting points, not constraints.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🔗</div>
+                    <h3>Cross-Department Linked Work Orders</h3>
+                    <p>Dependencies automatically create linked work orders across departments. Main assembly needs CNC parts? System auto-creates the CNC work order.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">📦</div>
+                    <h3>Dual Inventory System</h3>
+                    <p><strong>Permanent Stock:</strong> Standard materials tracked continuously.<br><strong>Project-Specific:</strong> Custom materials that auto-hide when project completes.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">⚙️</div>
+                    <h3>Resource Capacity Intelligence</h3>
+                    <p><strong>Linear Resources:</strong> One at a time with queue management (CNC machines).<br><strong>Concurrent Resources:</strong> Multiple simultaneous processes (assembly rooms).</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">✅</div>
+                    <h3>Integrated Quality Control</h3>
+                    <p>Checkpoints within processes—required vs optional. Photo documentation and completion tracking. Process completion blocked until required checkpoints pass.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🔄</div>
+                    <h3>Real-Time Collaboration</h3>
+                    <p>Live updates across all users. Department-based broadcasting. Instant notifications for overdue WOs, low stock, dependencies ready.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">📈</div>
+                    <h3>Project Management</h3>
+                    <p>Group multiple work orders by shared due date. Share project-specific inventory. Gantt charts and coordinated delivery tracking.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section id="benefits" class="benefits">
+        <div class="container">
+            <h2 class="section-title">Measurable Results</h2>
+
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <h3>50%</h3>
+                    <p>Reduction in "where is this item?" questions with item-level visibility</p>
+                </div>
+                <div class="benefit-card">
+                    <h3>30%</h3>
+                    <p>Faster cross-department handoffs via linked work orders</p>
+                </div>
+                <div class="benefit-card">
+                    <h3>90%+</h3>
+                    <p>On-time delivery with dependency tracking and bottleneck alerts</p>
+                </div>
+                <div class="benefit-card">
+                    <h3>25%</h3>
+                    <p>Reduction in material waste with project-specific inventory</p>
+                </div>
+                <div class="benefit-card">
+                    <h3>20%</h3>
+                    <p>Improvement in margin accuracy through actual cost tracking</p>
+                </div>
+                <div class="benefit-card">
+                    <h3>60%</h3>
+                    <p>Faster work order creation with template reuse</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Who It's For Section -->
+    <section id="audience" class="audience">
+        <div class="container">
+            <h2 class="section-title">Who It's For</h2>
+            <p class="section-subtitle">Custom manufacturers who need flexibility, not rigid workflows</p>
+
+            <div class="audience-grid">
+                <div class="audience-card">
+                    <div style="font-size: 3rem;">🪑</div>
+                    <h3>Custom Furniture</h3>
+                    <p>Manufacturers building unique pieces per customer specification</p>
+                </div>
+                <div class="audience-card">
+                    <div style="font-size: 3rem;">🔧</div>
+                    <h3>Fabrication Shops</h3>
+                    <p>Creating one-off metal products, signage, or custom installations</p>
+                </div>
+                <div class="audience-card">
+                    <div style="font-size: 3rem;">🏗️</div>
+                    <h3>Project-Based Manufacturers</h3>
+                    <p>Operations where products rarely repeat</p>
+                </div>
+                <div class="audience-card">
+                    <div style="font-size: 3rem;">🏭</div>
+                    <h3>Multi-Department Shops</h3>
+                    <p>Requiring cross-functional coordination (CNC, fabrication, upholstery, graphics)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section id="contact" class="cta-section">
+        <div class="container">
+            <h2>Ready to Transform Your Custom Shop?</h2>
+            <p>See how Custom MRP eliminates chaos and delivers visibility for one-off manufacturing</p>
+            <a href="mailto:sales@custommrp.com" class="cta-button">Request a Demo</a>
+            <a href="mailto:info@custommrp.com" class="cta-button secondary">Contact Sales</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Custom MRP. Built for custom manufacturers who refuse to compromise.</p>
+            <p style="margin-top: 1rem;">
+                <a href="mailto:info@custommrp.com">Contact</a> |
+                <a href="#features">Features</a> |
+                <a href="#audience">Who It's For</a>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
