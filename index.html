@@ -367,6 +367,97 @@
             border: 1px solid #e2e8f0;
         }
 
+        /* Pricing Section */
+        .pricing {
+            padding: 5rem 0;
+            background: #f7f9fc;
+        }
+
+        .pricing h2 {
+            font-size: 2.75rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: #1a365d;
+        }
+
+        .pricing .intro {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #4a5568;
+            margin-bottom: 3rem;
+        }
+
+        .pricing-card {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            padding: 3rem;
+            box-shadow: 0 20px 60px rgba(26, 54, 93, 0.15);
+            border: 3px solid #2c5282;
+            text-align: center;
+        }
+
+        .pricing-card .price {
+            font-size: 4rem;
+            font-weight: 700;
+            color: #1a365d;
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-card .price span {
+            font-size: 1.5rem;
+            color: #718096;
+            font-weight: 400;
+        }
+
+        .pricing-card .tagline {
+            font-size: 1.3rem;
+            color: #2c5282;
+            font-weight: 600;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-features {
+            list-style: none;
+            padding: 0;
+            margin: 2rem 0;
+            text-align: left;
+        }
+
+        .pricing-features li {
+            padding: 1rem 0;
+            font-size: 1.1rem;
+            color: #4a5568;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+        }
+
+        .pricing-features li:last-child {
+            border-bottom: none;
+        }
+
+        .pricing-features li::before {
+            content: "✓";
+            color: #38a169;
+            font-weight: 700;
+            font-size: 1.5rem;
+            margin-right: 1rem;
+        }
+
+        .pricing-card .cta-button {
+            margin-top: 2rem;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .pricing-note {
+            margin-top: 1.5rem;
+            color: #718096;
+            font-size: 0.95rem;
+        }
+
         /* Benefits Section */
         .benefits {
             background: linear-gradient(135deg, #1a365d 0%, #2c5282 100%);
@@ -568,7 +659,7 @@
                     <a href="#problems">Challenges</a>
                     <a href="#solution">Solutions</a>
                     <a href="#screenshots">See It</a>
-                    <a href="#audience">Who It's For</a>
+                    <a href="#pricing">Pricing</a>
                     <a href="#contact">Get Started</a>
                 </nav>
             </div>
@@ -779,6 +870,35 @@
         </div>
     </section>
 
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <h2>Simple, Transparent Pricing</h2>
+            <p class="intro">No games. No per-user fees. No hidden costs. One price for everything.</p>
+
+            <div class="pricing-card">
+                <div class="price">$400<span>/month</span></div>
+                <div class="tagline">Everything Included</div>
+
+                <ul class="pricing-features">
+                    <li>Unlimited users—your entire team</li>
+                    <li>Unlimited work orders</li>
+                    <li>Unlimited inventory items</li>
+                    <li>Unlimited projects</li>
+                    <li>All features included—no upgrades needed</li>
+                    <li>Real-time updates and notifications</li>
+                    <li>Email support</li>
+                    <li>Regular software updates</li>
+                    <li>Cancel anytime—no contracts</li>
+                </ul>
+
+                <a href="#contact" class="cta-button">Start Your Free Trial</a>
+
+                <p class="pricing-note">30-day free trial. No credit card required.</p>
+            </div>
+        </div>
+    </section>
+
     <!-- Who It's For Section -->
     <section id="audience" class="audience">
         <div class="container">
@@ -834,8 +954,8 @@
                 <a href="mailto:info@custommrp.com">Contact</a> |
                 <a href="#solution">Features</a> |
                 <a href="#screenshots">Screenshots</a> |
-                <a href="#audience">Who It's For</a> |
-                <a href="#how-it-works">How It Works</a>
+                <a href="#pricing">Pricing</a> |
+                <a href="#audience">Who It's For</a>
             </p>
         </div>
     </footer>
