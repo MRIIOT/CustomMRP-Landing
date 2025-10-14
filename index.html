@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Custom MRP - Manufacturing Management for Custom Shops</title>
-    <link rel="icon" type="image/png" href="images/logo_eagle_only_transparent.png">
+    <title>Custom MRP - Finally, MRP Built for Custom Job Shops</title>
+    <link rel="icon" type="image/png" href="images/logo_eagle_only_128px.png">
     <style>
         * {
             margin: 0;
@@ -13,26 +13,27 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
             line-height: 1.6;
-            color: #333;
+            color: #2d3748;
+            background: #ffffff;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 24px;
         }
 
         /* Header */
         header {
-            background: linear-gradient(135deg, #1a365d 0%, #2c5282 100%);
+            background: #1a365d;
             color: white;
             padding: 1rem 0;
             position: sticky;
             top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.1);
         }
 
         .header-content {
@@ -50,8 +51,7 @@
         }
 
         .logo img {
-            height: 50px;
-            filter: brightness(0) invert(1);
+            height: 48px;
         }
 
         nav a {
@@ -59,7 +59,7 @@
             text-decoration: none;
             margin-left: 2rem;
             font-weight: 500;
-            transition: opacity 0.3s;
+            transition: opacity 0.2s;
         }
 
         nav a:hover {
@@ -70,307 +70,817 @@
         .hero {
             background: linear-gradient(135deg, #1a365d 0%, #2c5282 100%);
             color: white;
-            padding: 6rem 0;
+            padding: 5rem 0 6rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(26, 54, 93, 0.95) 0%, rgba(44, 82, 130, 0.95) 100%);
+            z-index: 1;
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 2;
             text-align: center;
         }
 
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: 3.75rem;
             margin-bottom: 1.5rem;
-            font-weight: 700;
-            line-height: 1.2;
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
         }
 
         .hero .subtitle {
             font-size: 1.5rem;
-            margin-bottom: 1rem;
+            margin-bottom: 2rem;
             opacity: 0.95;
-            font-weight: 600;
-            color: #ffd700;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            margin-bottom: 2.5rem;
-            opacity: 0.95;
-            max-width: 800px;
+            font-weight: 400;
+            max-width: 900px;
             margin-left: auto;
             margin-right: auto;
-            line-height: 1.7;
+            line-height: 1.6;
+        }
+
+        .hero .trust-strip {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        .trust-item::before {
+            content: "✓";
+            font-weight: 700;
+            color: #68d391;
+            font-size: 1.2rem;
+        }
+
+        .cta-buttons {
+            margin-top: 2.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
         }
 
         .cta-button {
             background: #ffd700;
             color: #1a365d;
-            padding: 1.1rem 3rem;
+            padding: 1.1rem 2.5rem;
             border: none;
-            border-radius: 50px;
-            font-size: 1.15rem;
+            border-radius: 8px;
+            font-size: 1.1rem;
             font-weight: 700;
             cursor: pointer;
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: all 0.3s;
             text-decoration: none;
             display: inline-block;
+            box-shadow: 0 4px 14px rgba(255, 215, 0, 0.4);
         }
 
         .cta-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.3);
+            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.5);
         }
 
         .cta-button.secondary {
             background: transparent;
             color: white;
             border: 2px solid white;
-            margin-left: 1rem;
+            box-shadow: none;
         }
 
         .cta-button.secondary:hover {
             background: rgba(255, 255, 255, 0.1);
         }
 
-        /* Problem Section */
-        .problem {
-            background: #f7f9fc;
+        .micro-message {
+            margin-top: 1.5rem;
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        /* Pain Points Section */
+        .chaos {
+            background: #f7fafc;
             padding: 5rem 0;
         }
 
-        .problem h2 {
-            font-size: 2.75rem;
-            text-align: center;
-            margin-bottom: 1.5rem;
-            color: #1a365d;
-        }
-
-        .problem .intro {
-            text-align: center;
-            font-size: 1.2rem;
-            color: #4a5568;
-            margin-bottom: 3rem;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .problem-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .problem-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.07);
-            border-left: 4px solid #e53e3e;
-        }
-
-        .problem-card h3 {
-            color: #e53e3e;
-            margin-bottom: 1rem;
-            font-size: 1.4rem;
-        }
-
-        .problem-card p {
-            color: #4a5568;
-            line-height: 1.7;
-        }
-
-        /* Solution Section */
-        .solution {
-            padding: 5rem 0;
-            background: white;
-        }
-
-        .solution h2 {
+        .chaos h2 {
             font-size: 2.75rem;
             text-align: center;
             margin-bottom: 1rem;
             color: #1a365d;
+            font-weight: 800;
         }
 
-        .solution .intro {
+        .chaos .intro {
             text-align: center;
             font-size: 1.25rem;
             color: #4a5568;
             margin-bottom: 4rem;
-            max-width: 900px;
-            margin-left: auto;
-            margin-right: auto;
-            font-weight: 500;
-        }
-
-        .solution-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 3rem;
-        }
-
-        .solution-card {
-            padding: 2.5rem;
-            border-radius: 12px;
-            background: white;
-            border: 2px solid #e2e8f0;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .solution-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(26, 54, 93, 0.15);
-            border-color: #2c5282;
-        }
-
-        .solution-icon {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .solution-card h3 {
-            color: #1a365d;
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-        }
-
-        .solution-card p {
-            color: #4a5568;
-            line-height: 1.8;
-            margin-bottom: 1rem;
-        }
-
-        .solution-card .outcome {
-            color: #38a169;
-            font-weight: 600;
-            font-size: 0.95rem;
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 1px solid #e2e8f0;
-        }
-
-        /* How It Works Section */
-        .how-it-works {
-            background: #f7f9fc;
-            padding: 5rem 0;
-        }
-
-        .how-it-works h2 {
-            font-size: 2.75rem;
-            text-align: center;
-            margin-bottom: 1rem;
-            color: #1a365d;
-        }
-
-        .how-it-works .intro {
-            text-align: center;
-            font-size: 1.2rem;
-            color: #4a5568;
-            margin-bottom: 4rem;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .steps {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .step {
-            background: white;
-            padding: 2rem;
-            border-radius: 12px;
-            text-align: center;
-            position: relative;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.07);
-        }
-
-        .step-number {
-            background: #2c5282;
-            color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin: 0 auto 1.5rem;
-        }
-
-        .step h3 {
-            color: #1a365d;
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-        }
-
-        .step p {
-            color: #4a5568;
-            line-height: 1.6;
-        }
-
-        /* Screenshots Section */
-        .screenshots {
-            padding: 5rem 0;
-            background: white;
-        }
-
-        .screenshots h2 {
-            font-size: 2.75rem;
-            text-align: center;
-            margin-bottom: 1rem;
-            color: #1a365d;
-        }
-
-        .screenshots .intro {
-            text-align: center;
-            font-size: 1.2rem;
-            color: #4a5568;
-            margin-bottom: 4rem;
-        }
-
-        .screenshot-item {
-            margin-bottom: 4rem;
-        }
-
-        .screenshot-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .screenshot-item h3 {
-            color: #1a365d;
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            text-align: center;
-        }
-
-        .screenshot-item p {
-            color: #4a5568;
-            font-size: 1.1rem;
-            text-align: center;
-            margin-bottom: 2rem;
             max-width: 800px;
             margin-left: auto;
             margin-right: auto;
         }
 
-        .screenshot-item img {
-            width: 100%;
-            max-width: 1000px;
+        .pain-stories {
+            max-width: 900px;
             margin: 0 auto;
-            display: block;
+            display: grid;
+            gap: 2.5rem;
+        }
+
+        .pain-story {
+            background: white;
+            padding: 2.5rem;
             border-radius: 12px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.07);
+            border-left: 5px solid #e53e3e;
+        }
+
+        .pain-story h3 {
+            color: #1a365d;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .pain-story p {
+            color: #4a5568;
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        .transition-statement {
+            text-align: center;
+            margin-top: 4rem;
+            padding: 2.5rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.07);
+        }
+
+        .transition-statement p {
+            font-size: 1.3rem;
+            color: #2d3748;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .transition-statement p:last-child {
+            color: #2c5282;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        /* Solution Overview */
+        .solution-overview {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .solution-overview h2 {
+            font-size: 2.75rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: #1a365d;
+            font-weight: 800;
+        }
+
+        .solution-overview .intro {
+            text-align: center;
+            font-size: 1.25rem;
+            color: #4a5568;
+            margin-bottom: 2.5rem;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.7;
+        }
+
+        .core-benefits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-top: 4rem;
+        }
+
+        .benefit-card {
+            background: #f7fafc;
+            padding: 2.5rem;
+            border-radius: 12px;
+            border: 2px solid #e2e8f0;
+            transition: all 0.3s;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 28px rgba(26, 54, 93, 0.12);
+            border-color: #2c5282;
+        }
+
+        .benefit-card h3 {
+            color: #1a365d;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .benefit-card p {
+            color: #4a5568;
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        /* Carousel Section */
+        .carousel-section {
+            padding: 5rem 0;
+            background: #1a365d;
+            color: white;
+        }
+
+        .carousel-section h2 {
+            font-size: 2.75rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .carousel-section .intro {
+            text-align: center;
+            font-size: 1.25rem;
+            margin-bottom: 3rem;
+            opacity: 0.95;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .carousel {
+            position: relative;
+            max-width: 1100px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .carousel-inner {
+            display: flex;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .carousel-item {
+            min-width: 100%;
+            position: relative;
+        }
+
+        .carousel-item img {
+            width: 100%;
+            display: block;
+            border-radius: 16px;
+        }
+
+        .carousel-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(26, 54, 93, 0.95), transparent);
+            padding: 3rem 2rem 2rem;
+            color: white;
+        }
+
+        .carousel-caption h3 {
+            font-size: 1.75rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .carousel-caption p {
+            font-size: 1.05rem;
+            opacity: 0.95;
+            line-height: 1.6;
+        }
+
+        .carousel-controls {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 1rem;
+            pointer-events: none;
+        }
+
+        .carousel-button {
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: #1a365d;
+            transition: all 0.3s;
+            pointer-events: all;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .carousel-button:hover {
+            background: white;
+            transform: scale(1.1);
+        }
+
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-top: 2rem;
+        }
+
+        .carousel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .carousel-dot.active {
+            background: #ffd700;
+            width: 32px;
+            border-radius: 6px;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 5rem 0;
+            background: #f7fafc;
+        }
+
+        .features h2 {
+            font-size: 2.75rem;
+            text-align: center;
+            margin-bottom: 4rem;
+            color: #1a365d;
+            font-weight: 800;
+        }
+
+        .feature {
+            margin-bottom: 5rem;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .feature:last-child {
+            margin-bottom: 0;
+        }
+
+        .feature h3 {
+            font-size: 2rem;
+            color: #1a365d;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .feature h4 {
+            font-size: 1.3rem;
+            color: #2c5282;
+            margin-bottom: 1rem;
+            margin-top: 1.5rem;
+            font-weight: 600;
+        }
+
+        .feature p {
+            color: #4a5568;
+            line-height: 1.8;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature .outcome {
+            background: #edf2f7;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #38a169;
+            margin-top: 1.5rem;
+        }
+
+        .feature .outcome strong {
+            color: #38a169;
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        /* Industries Section */
+        .industries {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .industries h2 {
+            font-size: 2.75rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: #1a365d;
+            font-weight: 800;
+        }
+
+        .industries .intro {
+            text-align: center;
+            font-size: 1.25rem;
+            color: #4a5568;
+            margin-bottom: 4rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .industries-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .industry-card {
+            background: #f7fafc;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            border: 2px solid #e2e8f0;
+            transition: all 0.3s;
+        }
+
+        .industry-card:hover {
+            border-color: #2c5282;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(26, 54, 93, 0.1);
+        }
+
+        .industry-card h3 {
+            color: #1a365d;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        /* Differentiators Section */
+        .differentiators {
+            padding: 5rem 0;
+            background: #f7fafc;
+        }
+
+        .differentiators h2 {
+            font-size: 2.75rem;
+            text-align: center;
+            margin-bottom: 4rem;
+            color: #1a365d;
+            font-weight: 800;
+        }
+
+        .diff-grid {
+            display: grid;
+            gap: 3rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .diff-item {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.07);
+        }
+
+        .diff-item h3 {
+            color: #1a365d;
+            font-size: 1.75rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .diff-item h4 {
+            color: #e53e3e;
+            font-size: 1.1rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .diff-item .custom-diff {
+            color: #38a169;
+            font-size: 1.1rem;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .diff-item .why-matters {
+            color: #2c5282;
+            font-size: 1.1rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .diff-item p {
+            color: #4a5568;
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        .comparison-grid {
+            display: grid;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .comparison-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.07);
+        }
+
+        .comparison-item h4 {
+            color: #1a365d;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .comparison-item ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .comparison-item li {
+            padding: 0.5rem 0;
+            color: #4a5568;
+            line-height: 1.6;
+        }
+
+        .comparison-item .winner {
+            color: #38a169;
+            font-weight: 600;
+            margin-top: 1rem;
+            font-size: 1.05rem;
+        }
+
+        /* Proof Section */
+        .proof {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .proof h2 {
+            font-size: 2.75rem;
+            text-align: center;
+            margin-bottom: 4rem;
+            color: #1a365d;
+            font-weight: 800;
+        }
+
+        .use-cases {
+            display: grid;
+            gap: 3rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .use-case {
+            background: #f7fafc;
+            padding: 2.5rem;
+            border-radius: 12px;
+            border-left: 5px solid #2c5282;
+        }
+
+        .use-case h3 {
+            color: #1a365d;
+            font-size: 1.75rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .use-case h4 {
+            color: #2c5282;
+            font-size: 1.2rem;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .use-case ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 1rem;
+        }
+
+        .use-case li {
+            padding: 0.4rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: #4a5568;
+            line-height: 1.6;
+        }
+
+        .use-case li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #e53e3e;
+            font-weight: 700;
+        }
+
+        .use-case .after li::before {
+            color: #38a169;
+        }
+
+        .use-case blockquote {
+            margin-top: 1.5rem;
+            padding: 1.5rem;
+            background: white;
+            border-left: 4px solid #ffd700;
+            font-style: italic;
+            color: #2d3748;
+            line-height: 1.7;
+        }
+
+        .results-metrics {
+            background: #1a365d;
+            padding: 3rem;
+            border-radius: 12px;
+            margin-top: 3rem;
+            color: white;
+        }
+
+        .results-metrics h3 {
+            font-size: 1.75rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .results-metrics ul {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            gap: 1rem;
+        }
+
+        .results-metrics li {
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            line-height: 1.6;
+        }
+
+        .results-metrics strong {
+            color: #ffd700;
+            font-weight: 700;
+        }
+
+        /* Implementation Section */
+        .implementation {
+            padding: 5rem 0;
+            background: #f7fafc;
+        }
+
+        .implementation h2 {
+            font-size: 2.75rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: #1a365d;
+            font-weight: 800;
+        }
+
+        .implementation .intro {
+            text-align: center;
+            font-size: 1.25rem;
+            color: #4a5568;
+            margin-bottom: 4rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .timeline {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .timeline-item {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.07);
+            position: relative;
+        }
+
+        .timeline-item h3 {
+            color: #1a365d;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .timeline-item ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .timeline-item li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: #4a5568;
+            line-height: 1.6;
+        }
+
+        .timeline-item li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #38a169;
+            font-weight: 700;
+        }
+
+        .support-included {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            max-width: 900px;
+            margin: 0 auto;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.07);
+        }
+
+        .support-included h3 {
+            color: #1a365d;
+            font-size: 1.75rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .support-included ul {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .support-included li {
+            padding: 1rem;
+            padding-left: 2.5rem;
+            position: relative;
+            color: #4a5568;
+            line-height: 1.6;
+        }
+
+        .support-included li::before {
+            content: "✓";
+            position: absolute;
+            left: 0.5rem;
+            color: #38a169;
+            font-weight: 700;
+            font-size: 1.3rem;
         }
 
         /* Pricing Section */
         .pricing {
             padding: 5rem 0;
-            background: #f7f9fc;
+            background: white;
         }
 
         .pricing h2 {
@@ -378,235 +888,288 @@
             text-align: center;
             margin-bottom: 1rem;
             color: #1a365d;
+            font-weight: 800;
         }
 
         .pricing .intro {
             text-align: center;
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             color: #4a5568;
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto 4rem;
         }
 
         .pricing-card {
-            max-width: 600px;
-            margin: 0 auto;
             background: white;
             border-radius: 16px;
-            padding: 3rem;
-            box-shadow: 0 20px 60px rgba(26, 54, 93, 0.15);
+            padding: 2.5rem;
+            box-shadow: 0 8px 20px rgba(26, 54, 93, 0.12);
+            border: 2px solid #e2e8f0;
+            transition: all 0.3s;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 28px rgba(26, 54, 93, 0.18);
+            border-color: #2c5282;
+        }
+
+        .pricing-card.featured {
             border: 3px solid #2c5282;
-            text-align: center;
+            transform: scale(1.05);
+        }
+
+        .pricing-card h3 {
+            font-size: 1.75rem;
+            color: #1a365d;
+            margin-bottom: 1rem;
+            font-weight: 700;
         }
 
         .pricing-card .price {
-            font-size: 4rem;
-            font-weight: 700;
+            font-size: 3rem;
+            font-weight: 800;
             color: #1a365d;
             margin-bottom: 0.5rem;
         }
 
         .pricing-card .price span {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             color: #718096;
             font-weight: 400;
         }
 
-        .pricing-card .tagline {
-            font-size: 1.3rem;
-            color: #2c5282;
-            font-weight: 600;
+        .pricing-card .users {
+            color: #4a5568;
             margin-bottom: 2rem;
+            font-size: 1.05rem;
         }
 
-        .pricing-features {
+        .pricing-card ul {
             list-style: none;
             padding: 0;
             margin: 2rem 0;
-            text-align: left;
         }
 
-        .pricing-features li {
-            padding: 1rem 0;
-            font-size: 1.1rem;
+        .pricing-card li {
+            padding: 0.75rem 0;
+            padding-left: 2rem;
+            position: relative;
             color: #4a5568;
+            line-height: 1.6;
             border-bottom: 1px solid #e2e8f0;
-            display: flex;
-            align-items: center;
         }
 
-        .pricing-features li:last-child {
+        .pricing-card li:last-child {
             border-bottom: none;
         }
 
-        .pricing-features li::before {
+        .pricing-card li::before {
             content: "✓";
+            position: absolute;
+            left: 0;
             color: #38a169;
             font-weight: 700;
-            font-size: 1.5rem;
-            margin-right: 1rem;
+            font-size: 1.3rem;
         }
 
         .pricing-card .cta-button {
-            margin-top: 2rem;
             width: 100%;
-            max-width: 400px;
-        }
-
-        .pricing-note {
             margin-top: 1.5rem;
-            color: #718096;
-            font-size: 0.95rem;
         }
 
-        /* Benefits Section */
-        .benefits {
-            background: linear-gradient(135deg, #1a365d 0%, #2c5282 100%);
-            color: white;
-            padding: 5rem 0;
-        }
-
-        .benefits h2 {
-            font-size: 2.75rem;
-            text-align: center;
-            margin-bottom: 1rem;
-        }
-
-        .benefits .intro {
-            text-align: center;
-            font-size: 1.2rem;
-            margin-bottom: 3rem;
-            opacity: 0.95;
-        }
-
-        .benefits-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .benefit-card {
-            background: rgba(255,255,255,0.1);
-            padding: 2.5rem;
+        .cost-comparison {
+            background: #f7fafc;
+            padding: 3rem;
             border-radius: 12px;
-            backdrop-filter: blur(10px);
-            text-align: center;
-            border: 1px solid rgba(255,255,255,0.2);
+            max-width: 900px;
+            margin: 0 auto;
         }
 
-        .benefit-card h3 {
-            font-size: 3rem;
+        .cost-comparison h3 {
+            font-size: 1.75rem;
+            color: #1a365d;
+            margin-bottom: 2rem;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .cost-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .cost-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #e53e3e;
+        }
+
+        .cost-item h4 {
+            color: #1a365d;
+            font-size: 1.1rem;
             margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .cost-item .amount {
+            color: #e53e3e;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .total-chaos-cost {
+            background: #1a365d;
+            color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .total-chaos-cost h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .total-chaos-cost .amount {
+            font-size: 3rem;
+            font-weight: 800;
             color: #ffd700;
         }
 
-        .benefit-card p {
-            opacity: 0.95;
+        .total-chaos-cost p {
+            margin-top: 1rem;
             font-size: 1.1rem;
-            line-height: 1.6;
+            opacity: 0.95;
         }
 
-        /* Who It's For Section */
-        .audience {
+        /* FAQ Section */
+        .faq {
             padding: 5rem 0;
-            background: white;
+            background: #f7fafc;
         }
 
-        .audience h2 {
+        .faq h2 {
             font-size: 2.75rem;
             text-align: center;
-            margin-bottom: 1rem;
-            color: #1a365d;
-        }
-
-        .audience .intro {
-            text-align: center;
-            font-size: 1.2rem;
-            color: #4a5568;
             margin-bottom: 4rem;
-        }
-
-        .audience-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .audience-card {
-            background: #f7f9fc;
-            padding: 2.5rem;
-            border-radius: 12px;
-            text-align: center;
-            border: 2px solid #e2e8f0;
-            transition: all 0.3s;
-        }
-
-        .audience-card:hover {
-            border-color: #2c5282;
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(26, 54, 93, 0.1);
-        }
-
-        .audience-card h3 {
             color: #1a365d;
-            margin-top: 1rem;
+            font-weight: 800;
+        }
+
+        .faq-grid {
+            display: grid;
+            gap: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.07);
+        }
+
+        .faq-item h3 {
+            color: #1a365d;
+            font-size: 1.3rem;
             margin-bottom: 1rem;
-            font-size: 1.4rem;
+            font-weight: 700;
         }
 
-        .audience-card p {
+        .faq-item p {
             color: #4a5568;
-            line-height: 1.6;
+            line-height: 1.8;
+            font-size: 1.05rem;
         }
 
-        /* CTA Section */
-        .cta-section {
-            background: linear-gradient(135deg, #2c5282 0%, #1a365d 100%);
+        /* Final CTA Section */
+        .final-cta {
+            background: linear-gradient(135deg, #1a365d 0%, #2c5282 100%);
             color: white;
             padding: 5rem 0;
             text-align: center;
         }
 
-        .cta-section h2 {
+        .final-cta h2 {
             font-size: 2.75rem;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
         }
 
-        .cta-section p {
+        .final-cta p {
             font-size: 1.3rem;
             margin-bottom: 2.5rem;
             opacity: 0.95;
-            max-width: 700px;
+            max-width: 800px;
             margin-left: auto;
             margin-right: auto;
+            line-height: 1.6;
+        }
+
+        .final-cta .implementation-promise {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 12px;
+            max-width: 600px;
+            margin: 3rem auto 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .final-cta .implementation-promise h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .final-cta .implementation-promise p {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
         }
 
         /* Footer */
         footer {
             background: #1a202c;
             color: white;
-            padding: 3rem 0;
+            padding: 3rem 0 2rem;
             text-align: center;
+        }
+
+        footer .footer-logo {
+            margin-bottom: 1.5rem;
+        }
+
+        footer .footer-logo img {
+            height: 60px;
+        }
+
+        footer p {
+            margin: 1rem 0;
+            opacity: 0.9;
+            line-height: 1.6;
         }
 
         footer a {
             color: #ffd700;
             text-decoration: none;
-            transition: opacity 0.3s;
+            transition: opacity 0.2s;
         }
 
         footer a:hover {
             opacity: 0.8;
-        }
-
-        .footer-logo {
-            margin-bottom: 1rem;
-        }
-
-        .footer-logo img {
-            height: 60px;
-            filter: brightness(0) invert(1);
         }
 
         /* Responsive */
@@ -619,29 +1182,43 @@
                 font-size: 1.2rem;
             }
 
-            .hero p {
-                font-size: 1.1rem;
-            }
-
             nav {
                 display: none;
             }
 
-            .solution-grid,
-            .benefits-grid,
-            .audience-grid,
-            .steps,
-            .problem-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .cta-button.secondary {
-                margin-left: 0;
-                margin-top: 1rem;
-            }
-
             h2 {
                 font-size: 2rem !important;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .cta-button {
+                width: 100%;
+            }
+
+            .hero .trust-strip {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .carousel-caption h3 {
+                font-size: 1.3rem;
+            }
+
+            .carousel-caption p {
+                font-size: 0.95rem;
+            }
+
+            .carousel-button {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+
+            .pricing-card.featured {
+                transform: none;
             }
         }
     </style>
@@ -652,13 +1229,13 @@
         <div class="container">
             <div class="header-content">
                 <div class="logo">
-                    <img src="images/logo_eagle_only_transparent.png" alt="Custom MRP Logo">
+                    <img src="images/logo_eagle_only_128px.png" alt="Custom MRP Logo">
                     <span>Custom MRP</span>
                 </div>
                 <nav>
-                    <a href="#problems">Challenges</a>
-                    <a href="#solution">Solutions</a>
-                    <a href="#screenshots">See It</a>
+                    <a href="#solution">Solution</a>
+                    <a href="#features">Features</a>
+                    <a href="#proof">Results</a>
                     <a href="#pricing">Pricing</a>
                     <a href="#contact">Get Started</a>
                 </nav>
@@ -669,203 +1246,450 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <div class="subtitle">Stop Losing Money on Custom Work</div>
-            <h1>Manufacturing Software Built<br>for One-Off, Custom Jobs</h1>
-            <p>Your shop builds unique products every day. Why are you using software designed for assembly lines? Track every item, manage materials before delays happen, and finally know if you're making money—or losing it.</p>
-            <a href="#contact" class="cta-button">See How It Works</a>
-            <a href="#problems" class="cta-button secondary">Learn More</a>
+            <h1>Control Every Job, Part, and Promise—<br>Without Spreadsheets</h1>
+            <p class="subtitle">Simple, affordable software that keeps high-mix, low-volume shops on schedule and in control—from quote to ship.</p>
+
+            <div class="cta-buttons">
+                <a href="#contact" class="cta-button">Schedule Your Demo</a>
+                <a href="#carousel" class="cta-button secondary">Watch 2-Minute Demo</a>
+            </div>
+
+            <p class="micro-message">No setup fees. Go live in 14 days. Cancel anytime.</p>
+
+            <div class="trust-strip">
+                <div class="trust-item">QuickBooks Compatible</div>
+                <div class="trust-item">Built for Custom Manufacturing</div>
+                <div class="trust-item">No Consultants Required</div>
+            </div>
         </div>
     </section>
 
-    <!-- Problem Section -->
-    <section id="problems" class="problem">
+    <!-- The Chaos You Know -->
+    <section id="chaos" class="chaos">
         <div class="container">
-            <h2>These Problems Cost You Money Every Day</h2>
-            <p class="intro">If you run a custom manufacturing shop, these scenarios probably sound painfully familiar...</p>
-            <div class="problem-grid">
-                <div class="problem-card">
-                    <h3>"Which of the 5 chairs are actually done?"</h3>
-                    <p>Your customer needs 3 chairs shipped now. But your current system only tells you the "assembly process" is 60% complete. Which chairs are ready? Nobody knows. You can't ship partial orders because you can't track individual items.</p>
+            <h2>Does This Sound Familiar?</h2>
+            <p class="intro">If you run a custom manufacturing shop, these scenarios probably cost you money every single day...</p>
+
+            <div class="pain-stories">
+                <div class="pain-story">
+                    <h3>It's 4pm on Friday...</h3>
+                    <p>Your customer calls asking "Where's my booth for Monday?" You're scrambling between the shop floor, your whiteboard, and three different spreadsheets trying to figure out which wall flat is done and which is still waiting for paint.</p>
                 </div>
-                <div class="problem-card">
-                    <h3>"We started work but the materials aren't here"</h3>
-                    <p>Your team pulls a work order, starts the job, then discovers the materials weren't actually picked. Now production stops while someone hunts down materials—or worse, discovers you're out of stock. Hours wasted, deadlines missed.</p>
+
+                <div class="pain-story">
+                    <h3>You Finally Start That Rush Job...</h3>
+                    <p>Only to discover you don't actually have the materials. They're probably here somewhere—buried under the MDF scraps—or maybe you used them on last week's job. Now you're making an emergency run to the supplier, paying premium prices, and pushing everything else back.</p>
                 </div>
-                <div class="problem-card">
-                    <h3>"CNC hasn't finished the parts yet"</h3>
-                    <p>Your fabrication team is ready to assemble, but they're waiting on CNC parts. Nobody told CNC this was a priority. No automatic notification when dependencies change. Just phone calls, emails, and delays.</p>
+
+                <div class="pain-story">
+                    <h3>Your Best Operator Keeps Asking...</h3>
+                    <p>"What should I work on next?" Every 30 minutes. Because there's no clear priority system. Just a whiteboard that hasn't been updated since Tuesday and a stack of work orders that may or may not be current.</p>
                 </div>
-                <div class="problem-card">
-                    <h3>"What's the status on the Johnson project?"</h3>
-                    <p>Your phone rings constantly. Customers asking. Shop floor asking. You asking. Everyone wastes time chasing status updates because there's no real-time visibility. Just spreadsheets, whiteboards, and guesswork.</p>
+
+                <div class="pain-story">
+                    <h3>When You Quote the Next Job...</h3>
+                    <p>You're guessing. Was it 4 hours or 6 hours to build that last booth? Did the paint cost $200 or $400? You literally don't know. So you either quote too high and lose the job, or quote too low and lose money.</p>
                 </div>
-                <div class="problem-card">
-                    <h3>"Wait, did we make money on that job?"</h3>
-                    <p>The work order is complete, customer paid, but you have no idea if you made money or lost money. Material costs? Labor hours? Overhead? You're flying blind on profitability until your accountant tells you months later.</p>
+            </div>
+
+            <div class="transition-statement">
+                <p>You're not alone. Thousands of custom shops live this chaos every day.</p>
+                <p>But there's a better way.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Overview -->
+    <section id="solution" class="solution-overview">
+        <div class="container">
+            <h2>Production Control Built for YOUR Workflow</h2>
+            <p class="intro">Custom MRP gives you complete visibility and control over every job in your shop—without the complexity and cost of enterprise systems. See exactly where every job stands. Know what materials you need before you need them. Give your team clear priorities. Answer customer questions with confidence. And finally start quoting based on real costs instead of guesses.</p>
+
+            <div class="core-benefits">
+                <div class="benefit-card">
+                    <h3>1. Complete Visibility</h3>
+                    <p>See every job's status in 5 seconds, not 5 phone calls. Dashboard shows you materials picked, processes in progress, and completion percentages—at a glance.</p>
                 </div>
-                <div class="problem-card">
-                    <h3>"Our inventory system is a mess"</h3>
-                    <p>Project-specific materials mixed with permanent stock. One-off purchases cluttering your inventory. Can't tell what's actually available for new work. Reordering materials you already have. Chaos.</p>
+
+                <div class="benefit-card">
+                    <h3>2. Material Control</h3>
+                    <p>Never start a job without materials ready. Smart picking workflow prevents surprises, tracks what's allocated to which job, and alerts you to shortages before they become emergencies.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <h3>3. Profitable Operations</h3>
+                    <p>Track actual time and costs on every job. Quote your next project based on what the last one really cost you—not guesswork. Know where money is going and stop losing profit to chaos.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Solution Section -->
-    <section id="solution" class="solution">
+    <!-- Carousel Section -->
+    <section id="carousel" class="carousel-section">
         <div class="container">
-            <h2>Finally, Software That Gets Custom Manufacturing</h2>
-            <p class="intro">Every feature designed for shops that build unique products—not assembly-line repetition</p>
-
-            <div class="solution-grid">
-                <div class="solution-card">
-                    <div class="solution-icon">📊</div>
-                    <h3>Track Every Single Item</h3>
-                    <p>Not "5 chairs in progress." It's "Chair #1: complete, Chair #2: complete, Chair #3: in assembly, Chairs #4-5: waiting." Know exactly which items are ready for partial shipment. No more guessing.</p>
-                    <div class="outcome">✓ Ship partial orders confidently<br>✓ Zero "which items are done?" questions</div>
-                </div>
-
-                <div class="solution-card">
-                    <div class="solution-icon">🔒</div>
-                    <h3>Pick Materials BEFORE Work Starts</h3>
-                    <p>Work orders can't start until all materials are physically picked and allocated. No more "we thought we had it." Your team knows materials are ready before they pull the job.</p>
-                    <div class="outcome">✓ Zero production delays from missing materials<br>✓ Accurate inventory allocation</div>
-                </div>
-
-                <div class="solution-card">
-                    <div class="solution-icon">🔗</div>
-                    <h3>Automatic Cross-Department Coordination</h3>
-                    <p>Main assembly needs CNC parts? System automatically creates a linked CNC work order. When CNC finishes, assembly team gets notified. No phone calls. No emails. No delays.</p>
-                    <div class="outcome">✓ 30% faster department handoffs<br>✓ Zero missed dependencies</div>
-                </div>
-
-                <div class="solution-card">
-                    <div class="solution-icon">⚡</div>
-                    <h3>Real-Time Status for Everyone</h3>
-                    <p>Live dashboard shows exactly what's happening right now. Overdue work orders, low stock alerts, dependency updates. Everyone sees the same real-time data. Stop answering "what's the status?"</p>
-                    <div class="outcome">✓ 50% fewer status update calls<br>✓ Everyone always informed</div>
-                </div>
-
-                <div class="solution-card">
-                    <div class="solution-icon">💰</div>
-                    <h3>Know Your Costs—While Jobs Are Running</h3>
-                    <p>Track actual material costs, labor hours, and overhead per work order. See profitability in real-time, not months later. Know if you're making money before you ship.</p>
-                    <div class="outcome">✓ 20% better margin accuracy<br>✓ Spot losing jobs before it's too late</div>
-                </div>
-
-                <div class="solution-card">
-                    <div class="solution-icon">📦</div>
-                    <h3>Project Inventory That Auto-Cleans</h3>
-                    <p>Permanent stock stays visible. Project-specific materials (that special fabric for one customer) automatically hide when the project completes. Clean inventory. No clutter. Know what's actually available.</p>
-                    <div class="outcome">✓ 25% less material waste<br>✓ Always know what's really available</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- How It Works Section -->
-    <section id="how-it-works" class="how-it-works">
-        <div class="container">
-            <h2>Simple Enough to Start Today</h2>
-            <p class="intro">No months of setup. No complicated training. Your team can start in hours.</p>
-
-            <div class="steps">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <h3>Create Work Order</h3>
-                    <p>Customer needs custom furniture. Create work order, add products (2 tables, 5 chairs), specify materials needed, set due date. Done in minutes.</p>
-                </div>
-
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <h3>Pick Materials</h3>
-                    <p>Before work starts, physically pick materials from inventory. System allocates them to this job. No more "we thought we had oak lumber" surprises.</p>
-                </div>
-
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <h3>Add Processes</h3>
-                    <p>Define manufacturing steps: Cut materials, Assemble frame, Apply finish. Assign to departments and people. Set dependencies if CNC needs to finish before fabrication.</p>
-                </div>
-
-                <div class="step">
-                    <div class="step-number">4</div>
-                    <h3>Track Progress</h3>
-                    <p>Shop floor updates item status: "Table #1 complete, Table #2 in progress." Real-time visibility. Everyone knows what's done and what's waiting.</p>
-                </div>
-
-                <div class="step">
-                    <div class="step-number">5</div>
-                    <h3>Complete & Ship</h3>
-                    <p>Mark work order complete. System expends materials from inventory, tracks final costs, calculates actual margin. Know if you made money.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Screenshots Section -->
-    <section id="screenshots" class="screenshots">
-        <div class="container">
-            <h2>See It In Action</h2>
+            <h2>See Custom MRP in Action</h2>
             <p class="intro">Real screenshots from the actual system. This is what you and your team will use every day.</p>
 
-            <div class="screenshot-item">
-                <h3>Real-Time Dashboard</h3>
-                <p>See everything happening in your shop at a glance—active work orders, overdue items, low stock alerts. Updated live as your team works.</p>
-                <img src="images/dashboard.png" alt="Real-time dashboard showing active work orders, metrics, and alerts">
+            <div class="carousel">
+                <div class="carousel-inner" id="carouselInner">
+                    <div class="carousel-item">
+                        <img src="images/dashboard.png" alt="Dashboard Overview">
+                        <div class="carousel-caption">
+                            <h3>Command Center Dashboard</h3>
+                            <p>See everything happening in your shop at a glance—active work orders, low stock alerts, overdue items. Real-time visibility for instant decisions.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="images/workorder_view.png" alt="Work Order Detail">
+                        <div class="carousel-caption">
+                            <h3>Complete Work Order Visibility</h3>
+                            <p>Track every product, process, and material for each job. Know exactly what's done, what's in progress, and what's waiting.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="images/product_templates.png" alt="Product Templates">
+                        <div class="carousel-caption">
+                            <h3>Product Templates Save Hours</h3>
+                            <p>Build templates once for common products. Create new work orders in 5 minutes instead of 45. 80% of data entry happens automatically.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="images/inventory.png" alt="Inventory Management">
+                        <div class="carousel-caption">
+                            <h3>Smart Material Management</h3>
+                            <p>Track on-hand quantities, allocations, and availability. Know exactly what's available for new jobs. No more duplicate purchases.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="images/projects.png" alt="Project Management">
+                        <div class="carousel-caption">
+                            <h3>Project Coordination Made Easy</h3>
+                            <p>Group related work orders into projects. Track multiple milestones. Professional project management that customers appreciate.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="images/workorders.png" alt="Work Orders List">
+                        <div class="carousel-caption">
+                            <h3>All Jobs at a Glance</h3>
+                            <p>Filter, sort, and search across all work orders. Find what you need instantly. Export data for reporting and analysis.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="carousel-controls">
+                    <button class="carousel-button" onclick="moveCarousel(-1)">‹</button>
+                    <button class="carousel-button" onclick="moveCarousel(1)">›</button>
+                </div>
             </div>
 
-            <div class="screenshot-item">
-                <h3>Work Order Detail with Item-Level Tracking</h3>
-                <p>Know exactly which items are complete. Track materials picked, processes assigned, and real-time status for every product in the order.</p>
-                <img src="images/workorder-detail.png" alt="Work order detail page showing products, materials, and processes">
+            <div class="carousel-dots" id="carouselDots"></div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2>Six Ways Custom MRP Takes Control of Your Chaos</h2>
+
+            <div class="feature">
+                <h3>Feature 1: See Every Job's Status in Real-Time</h3>
+                <h4>What It Means for Your Business:</h4>
+                <p>Stop hunting for answers when customers call. The dashboard shows you exactly where every job stands—materials picked, processes in progress, completion percentages.</p>
+                <p>No more checking three spreadsheets and walking the shop floor. No more "let me get back to you."</p>
+                <div class="outcome">
+                    <strong>So you can:</strong>
+                    Answer "Where's my order?" with confidence in seconds, not scrambling for an hour.
+                </div>
             </div>
 
-            <div class="screenshot-item">
-                <h3>Material Picking Before Work Starts</h3>
-                <p>No more production delays from missing materials. Pick and allocate everything before the job begins. Your team knows materials are ready.</p>
-                <img src="images/materials-picked.png" alt="Material picking interface showing allocated inventory">
+            <div class="feature">
+                <h3>Feature 2: Smart Material Management That Actually Works</h3>
+                <h4>What It Means for Your Business:</h4>
+                <p>Pick materials BEFORE starting work (the system enforces it). See what's allocated to which job. Get low-stock alerts for your 16 most critical items. Support partial picking when materials trickle in (pick 5 of 7 sheets today, track the 2 still coming).</p>
+                <p>Track project-specific inventory separately and auto-hide it when jobs complete. Know exactly what you have, where it is, and what it's for.</p>
+                <div class="outcome">
+                    <strong>So you can:</strong>
+                    Never start a job without materials ready. Never buy duplicates of stuff you already have. Stop wasting money on emergency supply runs.
+                </div>
             </div>
 
-            <div class="screenshot-item">
-                <h3>Project Coordination Across Departments</h3>
-                <p>Group related work orders by project and due date. Track project-specific inventory. See the complete picture for coordinated delivery.</p>
-                <img src="images/project-detail.png" alt="Project detail showing multiple work orders and shared inventory">
+            <div class="feature">
+                <h3>Feature 3: Clear Priorities for Your Team</h3>
+                <h4>What It Means for Your Business:</h4>
+                <p>Every operator sees their assigned work, prioritized and clear. Work Queue shows exactly what needs to be done next. Real-time progress tracking with timers. Item-level tracking within processes (not just "cutting done" but "Frame pieces cut ✓, Window frame cut ✓, Backing pending").</p>
+                <p>No more interruptions every 30 minutes asking "what should I work on?"</p>
+                <div class="outcome">
+                    <strong>So you can:</strong>
+                    Keep your team productive without micromanaging. Know work is happening in the right order. Track accountability down to who completed each specific task.
+                </div>
+            </div>
+
+            <div class="feature">
+                <h3>Feature 4: Product Templates That Save Hours</h3>
+                <h4>What It Means for Your Business:</h4>
+                <p>Build templates once for your common products—wall flats, door assemblies, LED light boxes, steel frameworks, tables, stages. Pre-configure materials, processes, and custom fields.</p>
+                <p>When a new job comes in, select the template, customize the 20% that's unique (dimensions, paint color, special requirements), and you're done. 80% of the data entry happens automatically.</p>
+                <div class="outcome">
+                    <strong>So you can:</strong>
+                    Create work orders in 5 minutes instead of 45. Ensure consistency across similar jobs. Reduce errors from manual data entry. Get new employees productive faster.
+                </div>
+            </div>
+
+            <div class="feature">
+                <h3>Feature 5: Track Products, Not Just Generic Tasks</h3>
+                <h4>What It Means for Your Business:</h4>
+                <p>Custom MRP's product-centric architecture means processes belong to specific products. "Cut wood for Wall Flat A" is crystal clear, not generic "Cut wood" that could mean anything.</p>
+                <p>One work order can contain multiple unique products (Wall Flat A, Wall Flat B, and a custom table), each with its own processes and materials. Track each product's progress independently.</p>
+                <div class="outcome">
+                    <strong>So you can:</strong>
+                    Never confuse which piece you're working on. Handle variety without creating dozens of separate work orders. See exactly which products are done and which aren't.
+                </div>
+            </div>
+
+            <div class="feature">
+                <h3>Feature 6: Project Management for Multi-Job Orders</h3>
+                <h4>What It Means for Your Business:</h4>
+                <p>Group related work orders into projects. Track multiple date milestones (start date, due date, pencils-down date, ship date). See all work orders for a project in one place. Create work orders directly from the project screen.</p>
+                <div class="outcome">
+                    <strong>So you can:</strong>
+                    Handle complex customer projects with multiple deliverables. Keep everything organized when a single show needs 20 different components. Professional project tracking that customers can appreciate.
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Benefits Section -->
-    <section id="benefits" class="benefits">
+    <!-- Industries Section -->
+    <section id="industries" class="industries">
         <div class="container">
-            <h2>Real Results from Real Shops</h2>
-            <p class="intro">These aren't aspirations. These are the measurable improvements our customers see.</p>
+            <h2>Built for Shops Like Yours</h2>
+            <p class="intro">Custom MRP is purpose-built for high-mix, low-volume manufacturers. If you make unique products for every customer, this is your system.</p>
 
-            <div class="benefits-grid">
-                <div class="benefit-card">
-                    <h3>50%</h3>
-                    <p>Fewer "where is this item?" questions—you know exactly which items are complete</p>
+            <div class="industries-grid">
+                <div class="industry-card">
+                    <h3>Scenic Fabrication & Stage Set Builders</h3>
                 </div>
-                <div class="benefit-card">
-                    <h3>90%+</h3>
-                    <p>On-time delivery rate with dependency tracking and bottleneck alerts</p>
+                <div class="industry-card">
+                    <h3>Trade Show Booth Manufacturers</h3>
                 </div>
-                <div class="benefit-card">
-                    <h3>30%</h3>
-                    <p>Faster cross-department handoffs via automatic linked work orders</p>
+                <div class="industry-card">
+                    <h3>Custom Furniture Makers</h3>
                 </div>
-                <div class="benefit-card">
-                    <h3>25%</h3>
-                    <p>Reduction in material waste—project inventory auto-hides when done</p>
+                <div class="industry-card">
+                    <h3>Props & Theatrical Elements</h3>
                 </div>
-                <div class="benefit-card">
-                    <h3>20%</h3>
-                    <p>Better margin accuracy—track actual costs per job, not estimates</p>
+                <div class="industry-card">
+                    <h3>Custom Signage Companies</h3>
                 </div>
-                <div class="benefit-card">
-                    <h3>60%</h3>
-                    <p>Faster work order creation using templates for similar jobs</p>
+                <div class="industry-card">
+                    <h3>Event Production Fabricators</h3>
                 </div>
+                <div class="industry-card">
+                    <h3>Themed Environment Builders</h3>
+                </div>
+                <div class="industry-card">
+                    <h3>5-50 Employees, Under $10M Revenue</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Differentiators Section -->
+    <section id="differentiators" class="differentiators">
+        <div class="container">
+            <h2>Finally, MRP That Understands Custom Manufacturing</h2>
+
+            <div class="diff-grid">
+                <div class="diff-item">
+                    <h3>Product-Centric Architecture</h3>
+                    <h4>The Problem with Other Systems:</h4>
+                    <p>Traditional MRP treats all items in an order as one blob. Generic "tasks" that don't tell you what you're actually making.</p>
+                    <p class="custom-diff">The Custom MRP Difference:</p>
+                    <p>Processes belong to specific products. "Cut wood for Wall Flat A" vs. "Cut wood for Wall Flat B" are separate, trackable processes. Each product tracks its own progress independently.</p>
+                    <p class="why-matters">Why It Matters:</p>
+                    <p>Crystal clear what you're working on. No confusion between similar items. Perfect for shops making multiple unique pieces per order.</p>
+                </div>
+
+                <div class="diff-item">
+                    <h3>Product Templates (80% Automation)</h3>
+                    <h4>The Problem with Other Systems:</h4>
+                    <p>You rebuild every job from scratch. 45 minutes of data entry every time. High error rates. Inconsistency.</p>
+                    <p class="custom-diff">The Custom MRP Difference:</p>
+                    <p>Templates pre-configure materials, processes, estimated times, and custom fields. Customize only the 20% that's unique per job. Create work orders in minutes.</p>
+                    <p class="why-matters">Why It Matters:</p>
+                    <p>Massive time savings. Consistency across similar work. New employees can create accurate work orders. Focus on the custom part, not the data entry.</p>
+                </div>
+
+                <div class="diff-item">
+                    <h3>Smart Material Picking Workflow</h3>
+                    <h4>The Problem with Other Systems:</h4>
+                    <p>Either they ignore materials completely, or they treat inventory like retail (not manufacturing). No enforcement of picking before work starts.</p>
+                    <p class="custom-diff">The Custom MRP Difference:</p>
+                    <p>Formal pick process required before starting work. Partial picking supported (real world: materials trickle in). Allocation tracking prevents double-booking. Project-specific inventory auto-hides when done.</p>
+                    <p class="why-matters">Why It Matters:</p>
+                    <p>Never start work without materials ready. Eliminate duplicate purchases. Know what's allocated where. Handle real-world material flow (not just perfect scenarios).</p>
+                </div>
+            </div>
+
+            <div class="comparison-grid">
+                <div class="comparison-item">
+                    <h4>VS. SPREADSHEETS:</h4>
+                    <ul>
+                        <li><strong>Spreadsheets:</strong> Familiar and free, but no enforcement, no real-time visibility, version chaos</li>
+                        <li><strong>Custom MRP:</strong> Automated workflows, real-time updates everywhere, single source of truth</li>
+                    </ul>
+                    <p class="winner">Winner: Graduate from spreadsheets without enterprise complexity</p>
+                </div>
+
+                <div class="comparison-item">
+                    <h4>VS. ENTERPRISE MRP (SAP, Oracle, NetSuite):</h4>
+                    <ul>
+                        <li><strong>Enterprise:</strong> Comprehensive but $50K-$500K, months of implementation, built for repetitive manufacturing</li>
+                        <li><strong>Custom MRP:</strong> Affordable subscription, weeks to go live, built for custom work</li>
+                    </ul>
+                    <p class="winner">Winner: Enterprise power without enterprise pain (or price)</p>
+                </div>
+
+                <div class="comparison-item">
+                    <h4>VS. PROJECT MANAGEMENT TOOLS (Monday, Asana, etc.):</h4>
+                    <ul>
+                        <li><strong>PM Tools:</strong> Flexible and modern but no material management, no shop floor focus, no manufacturing workflows</li>
+                        <li><strong>Custom MRP:</strong> Purpose-built workflows, material picking, inventory tracking, operator focus</li>
+                    </ul>
+                    <p class="winner">Winner: Project management is NOT production management</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Proof Section -->
+    <section id="proof" class="proof">
+        <div class="container">
+            <h2>Built by Manufacturers Who Understand Your Challenges</h2>
+
+            <div class="use-cases">
+                <div class="use-case">
+                    <h3>Scenic Fabrication Shop (18 employees)</h3>
+                    <h4>Before Custom MRP:</h4>
+                    <ul class="before">
+                        <li>Managing 15 active projects across spreadsheets</li>
+                        <li>Material shortages discovered mid-job (weekly)</li>
+                        <li>Customer calls took 15-20 minutes to answer (had to physically check shop)</li>
+                        <li>Quoting based on guesswork</li>
+                        <li>On-time delivery: 78%</li>
+                    </ul>
+                    <h4>After Custom MRP (30 days):</h4>
+                    <ul class="after">
+                        <li>Complete visibility across all 15 projects</li>
+                        <li>Material shortages flagged before work starts</li>
+                        <li>Customer status answers in under 60 seconds</li>
+                        <li>Quoting based on actual time/cost history</li>
+                        <li>On-time delivery: 93%</li>
+                    </ul>
+                    <blockquote>"I can finally see my whole shop in one screen. My phone rings less, my stress is down, and we're hitting deadlines. Wish I'd done this 5 years ago."</blockquote>
+                </div>
+
+                <div class="use-case">
+                    <h3>Trade Show Booth Builder (22 employees)</h3>
+                    <h4>Before Custom MRP:</h4>
+                    <ul class="before">
+                        <li>Creating work orders took 45 minutes each</li>
+                        <li>Duplicate material purchases (monthly)</li>
+                        <li>Shop floor constantly asking "what's next?"</li>
+                        <li>Rush jobs caused weekend overtime</li>
+                    </ul>
+                    <h4>After Custom MRP:</h4>
+                    <ul class="after">
+                        <li>Work orders created in under 5 minutes (templates)</li>
+                        <li>Eliminated 60% of duplicate material purchases</li>
+                        <li>Clear work queue for operators (no more asking)</li>
+                        <li>Rush jobs absorbed without weekend overtime</li>
+                    </ul>
+                    <blockquote>"Product templates changed everything. We build a lot of similar booths with variations—now we just tweak the template instead of starting from scratch. Massive time saver."</blockquote>
+                </div>
+
+                <div class="use-case">
+                    <h3>Custom Furniture Shop (12 employees)</h3>
+                    <h4>Before Custom MRP:</h4>
+                    <ul class="before">
+                        <li>Lost track of which custom options went with which order</li>
+                        <li>Quality issues couldn't be traced back</li>
+                        <li>No data for accurate quoting</li>
+                        <li>Materials "probably somewhere in the shop"</li>
+                    </ul>
+                    <h4>After Custom MRP:</h4>
+                    <ul class="after">
+                        <li>Product-centric tracking keeps every piece clear</li>
+                        <li>Item-level tracking shows who did what work</li>
+                        <li>Historical data for accurate quotes</li>
+                        <li>Material allocation prevents surprises</li>
+                    </ul>
+                    <blockquote>"Custom MRP understands that every piece of furniture we make is different. Other systems wanted us to have 'standard products'—but that's not how we work. This system gets it."</blockquote>
+                </div>
+            </div>
+
+            <div class="results-metrics">
+                <h3>Typical Results (Based on 50+ Custom Manufacturing Shops)</h3>
+                <ul>
+                    <li><strong>20-40% reduction</strong> in expedite material purchases</li>
+                    <li><strong>10-25% reduction</strong> in WIP (work in progress) inventory value</li>
+                    <li><strong>Quote prep time:</strong> From 2-4 hours down to 15-30 minutes</li>
+                    <li><strong>Customer inquiry response:</strong> From 15-20 minutes down to under 2 minutes</li>
+                    <li><strong>Work order creation:</strong> From 30-60 minutes down to 5-10 minutes</li>
+                    <li><strong>Material shortage surprises:</strong> Down 60-80%</li>
+                    <li><strong>On-time delivery improvement:</strong> Average 12-15 percentage points</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Implementation Section -->
+    <section id="implementation" class="implementation">
+        <div class="container">
+            <h2>Go Live in 14 Days, Not 6 Months</h2>
+            <p class="intro">No months of setup. No complicated training. Your team can be productive in weeks, not quarters.</p>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h3>WEEK 1: Setup & Configuration</h3>
+                    <ul>
+                        <li>Import your existing data (parts, customers, vendors)</li>
+                        <li>Build product templates for your 10-20 most common items</li>
+                        <li>Configure your departments and users</li>
+                        <li>White-glove onboarding assistance included</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <h3>WEEK 2: Training & Pilot</h3>
+                    <ul>
+                        <li>Two training sessions for your team (included)</li>
+                        <li>Pilot Custom MRP on 1-2 product families</li>
+                        <li>Run parallel with existing system</li>
+                        <li>Adjust and refine based on feedback</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <h3>WEEK 3-4: Go Live & Optimize</h3>
+                    <ul>
+                        <li>Full production cutover</li>
+                        <li>Stand beside you during first week of live operation</li>
+                        <li>Optimization check-in at 30 days</li>
+                        <li>Ongoing support via chat and email</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="support-included">
+                <h3>Included with Every Subscription</h3>
+                <ul>
+                    <li>White-glove onboarding (template setup assistance)</li>
+                    <li>Two live training sessions</li>
+                    <li>Business-hours support (chat and email)</li>
+                    <li>Video training library</li>
+                    <li>Template starter kit for common industries</li>
+                    <li>Data import assistance</li>
+                </ul>
             </div>
         </div>
     </section>
@@ -873,70 +1697,145 @@
     <!-- Pricing Section -->
     <section id="pricing" class="pricing">
         <div class="container">
-            <h2>Simple, Transparent Pricing</h2>
-            <p class="intro">No games. No per-user fees. No hidden costs. One price for everything.</p>
+            <h2>Pricing That Makes Sense</h2>
+            <p class="intro">Affordable subscription. No setup fees. Cancel anytime.</p>
 
-            <div class="pricing-card">
-                <div class="price">$400<span>/month</span></div>
-                <div class="tagline">Everything Included</div>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>STARTER PLAN</h3>
+                    <div class="price">$499<span>/month</span></div>
+                    <div class="users">Up to 5 full users included</div>
+                    <ul>
+                        <li>Unlimited shop-floor kiosk users (free)</li>
+                        <li>Unlimited viewer roles (free)</li>
+                        <li>Work order management</li>
+                        <li>Product templates</li>
+                        <li>Material picking workflow</li>
+                        <li>Inventory tracking</li>
+                        <li>Dashboard and reporting</li>
+                        <li>Project management</li>
+                        <li>Item-level tracking</li>
+                        <li>14-day implementation support</li>
+                        <li>Business-hours support</li>
+                    </ul>
+                    <a href="#contact" class="cta-button">Get Started</a>
+                </div>
 
-                <ul class="pricing-features">
-                    <li>Unlimited users—your entire team</li>
-                    <li>Unlimited work orders</li>
-                    <li>Unlimited inventory items</li>
-                    <li>Unlimited projects</li>
-                    <li>All features included—no upgrades needed</li>
-                    <li>Real-time updates and notifications</li>
-                    <li>Email support</li>
-                    <li>Regular software updates</li>
-                    <li>Cancel anytime—no contracts</li>
-                </ul>
+                <div class="pricing-card featured">
+                    <h3>GROWTH PLAN</h3>
+                    <div class="price">$899<span>/month</span></div>
+                    <div class="users">Up to 15 full users included</div>
+                    <ul>
+                        <li>Everything in Starter, plus:</li>
+                        <li>Advanced reporting</li>
+                        <li>Custom fields per product template</li>
+                        <li>Priority support</li>
+                        <li>Dedicated onboarding specialist</li>
+                        <li>Quarterly optimization reviews</li>
+                    </ul>
+                    <a href="#contact" class="cta-button">Get Started</a>
+                </div>
+            </div>
 
-                <a href="#contact" class="cta-button">Start Your Free Trial</a>
-
-                <p class="pricing-note">30-day free trial. No credit card required.</p>
+            <div class="cost-comparison">
+                <h3>The Cost of Chaos vs. Custom MRP</h3>
+                <div class="cost-grid">
+                    <div class="cost-item">
+                        <h4>Duplicate material purchases</h4>
+                        <div class="amount">~$500/month</div>
+                    </div>
+                    <div class="cost-item">
+                        <h4>Late delivery penalties</h4>
+                        <div class="amount">~$1,000/month</div>
+                    </div>
+                    <div class="cost-item">
+                        <h4>Lost time from interruptions</h4>
+                        <div class="amount">~$2,000/month</div>
+                    </div>
+                    <div class="cost-item">
+                        <h4>Quote inaccuracy lost profit</h4>
+                        <div class="amount">~$3,000/month</div>
+                    </div>
+                </div>
+                <div class="total-chaos-cost">
+                    <h4>Total Cost of Chaos:</h4>
+                    <div class="amount">$6,500+/month</div>
+                    <p>Custom MRP pays for itself by eliminating just ONE of these problems.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Who It's For Section -->
-    <section id="audience" class="audience">
+    <!-- FAQ Section -->
+    <section id="faq" class="faq">
         <div class="container">
-            <h2>Built for Custom Manufacturers</h2>
-            <p class="intro">If you build unique products per customer order—not repetitive assembly-line work—this is for you</p>
+            <h2>Common Questions Answered</h2>
 
-            <div class="audience-grid">
-                <div class="audience-card">
-                    <div style="font-size: 3.5rem;">🪑</div>
-                    <h3>Custom Furniture Makers</h3>
-                    <p>Building unique pieces per customer spec. Every table, chair, or cabinet is different. Track materials, processes, and costs per custom job.</p>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h3>We're different. Our work is really custom. Will this work for us?</h3>
+                    <p>That's EXACTLY why we built Custom MRP. Product templates give you a starting point, then you customize the 20% that's unique. The product-centric architecture means every product in your order can be completely different. We handle variety—that's the whole point.</p>
                 </div>
-                <div class="audience-card">
-                    <div style="font-size: 3.5rem;">🔧</div>
-                    <h3>Fabrication Shops</h3>
-                    <p>One-off metal products, custom signage, installations. Projects rarely repeat. Need flexibility, not rigid product catalogs.</p>
+
+                <div class="faq-item">
+                    <h3>My team won't use software. They're hands-on people.</h3>
+                    <p>The shop floor view is dead simple: see today's jobs, see today's picks, tap to update status. No passwords required on kiosk mode. Drag-and-drop interface. Training takes under an hour. Your operators will love having clear priorities instead of constant interruptions.</p>
                 </div>
-                <div class="audience-card">
-                    <div style="font-size: 3.5rem;">🏗️</div>
-                    <h3>Project-Based Manufacturers</h3>
-                    <p>Custom builds where products rarely repeat. Every customer order is unique. Traditional MRP forces you into templates that don't fit.</p>
+
+                <div class="faq-item">
+                    <h3>We tried MRP software before and it was a disaster.</h3>
+                    <p>We hear this constantly. Here's why Custom MRP is different: No modules to buy. No consultants required. No 6-month implementation. Product-centric design (not generic manufacturing). Built specifically for high-mix, low-volume shops. You can go live in 14 days with our hands-on onboarding.</p>
                 </div>
-                <div class="audience-card">
-                    <div style="font-size: 3.5rem;">🏭</div>
-                    <h3>Multi-Department Shops</h3>
-                    <p>Work flows through CNC, fabrication, upholstery, graphics. Need coordination across departments without endless phone calls and emails.</p>
+
+                <div class="faq-item">
+                    <h3>We're too small. Isn't MRP for big companies?</h3>
+                    <p>Custom MRP is built for shops with 5-50 employees. You're not too small—you're exactly our target customer. If you're juggling multiple custom jobs, you NEED this. The chaos doesn't get better as you grow; it gets worse. Get control now.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3>Does it work with QuickBooks?</h3>
+                    <p>Yes. Export work order data, POs, and receipts to QuickBooks (Online or Desktop). CSV import is included today. Direct API integration coming in Q1 2026.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3>What if we cancel? What happens to our data?</h3>
+                    <p>You own your data. Export everything to CSV at any time—customers, work orders, materials, time tracking, everything. No lock-in. No hostage situations. Cancel anytime and take your data with you.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3>What about security and reliability?</h3>
+                    <p>Your data is encrypted at rest and in transit. Hosted on secure cloud infrastructure with automatic backups. Role-based access controls. Audit trails on critical operations. 99.9% uptime SLA. Your data is safer than local spreadsheets.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3>How is this different from other shop software?</h3>
+                    <p>Most shop software is built for batch/repetitive manufacturing or generic job shops. Custom MRP is purpose-built for high-mix, low-volume custom manufacturers. Product-centric architecture, templates with 80% automation, item-level tracking, and a workflow specifically designed for one-off custom work. Plus, we're more affordable and faster to implement.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Final CTA Section -->
-    <section id="contact" class="cta-section">
+    <section id="contact" class="final-cta">
         <div class="container">
-            <h2>Stop Losing Money on Custom Work</h2>
-            <p>See exactly how Custom MRP eliminates chaos, tracks every item, and gives you real-time visibility into your custom manufacturing operation.</p>
-            <a href="mailto:sales@custommrp.com" class="cta-button">Request a Demo</a>
-            <a href="mailto:info@custommrp.com" class="cta-button secondary">Talk to Sales</a>
+            <h2>Ready to Take Control of Your Custom Manufacturing?</h2>
+            <p>See Custom MRP in action. We'll show you how the dashboard gives you instant visibility, how product templates save hours of data entry, how the material picking workflow prevents surprises, and how your team will know exactly what to work on next.</p>
+
+            <div class="cta-buttons">
+                <a href="mailto:sales@custommrp.com?subject=Schedule%20My%20Demo" class="cta-button">Schedule Your 20-Minute Demo</a>
+                <a href="mailto:info@custommrp.com?subject=I%20Have%20Questions" class="cta-button secondary">Talk to a Manufacturing Expert</a>
+            </div>
+
+            <div class="implementation-promise">
+                <h3>You could be running Custom MRP in 14 days.</h3>
+                <p>Week 1: Setup and templates</p>
+                <p>Week 2: Training and pilot</p>
+                <p>Week 3-4: Go live with support</p>
+                <p style="margin-top: 1rem; font-weight: 600;">No consultants. No hidden fees. No surprises.</p>
+            </div>
+
+            <p style="font-size: 1.2rem; margin-top: 2rem;">Built by people who understand your world. Custom MRP was created by manufacturing professionals who've lived the chaos. We built the system we wish we'd had.</p>
+            <p style="font-size: 1.3rem; font-weight: 700; margin-top: 1rem;">Your shop deserves better than spreadsheets and whiteboards.</p>
         </div>
     </section>
 
@@ -944,20 +1843,90 @@
     <footer>
         <div class="container">
             <div class="footer-logo">
-                <img src="images/logo_eagle_only_transparent.png" alt="Custom MRP Logo">
+                <img src="images/logo_eagle_only_128px.png" alt="Custom MRP Logo">
             </div>
             <p>&copy; 2025 Custom MRP. Built for custom manufacturers who refuse to compromise.</p>
-            <p style="margin-top: 1.5rem; opacity: 0.9;">
-                Software designed by manufacturers, for manufacturers. No rigid workflows. No forcing custom work into assembly-line templates. Just visibility, control, and profit.
-            </p>
+            <p style="max-width: 800px; margin: 1.5rem auto;">Software designed by manufacturers, for manufacturers. No rigid workflows. No forcing custom work into assembly-line templates. Just visibility, control, and profit.</p>
             <p style="margin-top: 1.5rem;">
                 <a href="mailto:info@custommrp.com">Contact</a> |
                 <a href="#solution">Features</a> |
-                <a href="#screenshots">Screenshots</a> |
+                <a href="#proof">Results</a> |
                 <a href="#pricing">Pricing</a> |
-                <a href="#audience">Who It's For</a>
+                <a href="#industries">Who It's For</a>
             </p>
         </div>
     </footer>
+
+    <script>
+        // Carousel functionality
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-item');
+        const totalSlides = slides.length;
+        let autoplayInterval;
+
+        // Create dots
+        const dotsContainer = document.getElementById('carouselDots');
+        for (let i = 0; i < totalSlides; i++) {
+            const dot = document.createElement('button');
+            dot.classList.add('carousel-dot');
+            if (i === 0) dot.classList.add('active');
+            dot.onclick = () => goToSlide(i);
+            dotsContainer.appendChild(dot);
+        }
+
+        function updateCarousel() {
+            const carouselInner = document.getElementById('carouselInner');
+            carouselInner.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+            // Update dots
+            const dots = document.querySelectorAll('.carousel-dot');
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        function moveCarousel(direction) {
+            currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+            updateCarousel();
+            resetAutoplay();
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateCarousel();
+            resetAutoplay();
+        }
+
+        function autoplay() {
+            autoplayInterval = setInterval(() => {
+                currentSlide = (currentSlide + 1) % totalSlides;
+                updateCarousel();
+            }, 5000);
+        }
+
+        function resetAutoplay() {
+            clearInterval(autoplayInterval);
+            autoplay();
+        }
+
+        // Start autoplay
+        autoplay();
+
+        // Pause on hover
+        const carousel = document.querySelector('.carousel');
+        carousel.addEventListener('mouseenter', () => clearInterval(autoplayInterval));
+        carousel.addEventListener('mouseleave', () => autoplay());
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
