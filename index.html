@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Custom MRP - Finally, MRP Built for Custom Job Shops</title>
-    <link rel="icon" type="image/png" href="images/logo_eagle_only_128px.png">
+    <link rel="icon" type="image/png" href="images/logo_eagle_only_transparent.png">
     <style>
         * {
             margin: 0;
@@ -182,7 +182,7 @@
         /* Pain Points Section */
         .chaos {
             background: #f7fafc;
-            padding: 5rem 0;
+            padding: 4rem 0;
         }
 
         .chaos h2 {
@@ -197,59 +197,63 @@
             text-align: center;
             font-size: 1.25rem;
             color: #4a5568;
-            margin-bottom: 4rem;
+            margin-bottom: 3rem;
             max-width: 800px;
             margin-left: auto;
             margin-right: auto;
         }
 
         .pain-stories {
-            max-width: 900px;
+            max-width: 1200px;
             margin: 0 auto;
             display: grid;
-            gap: 2.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
         }
 
         .pain-story {
             background: white;
-            padding: 2.5rem;
+            padding: 1.75rem;
             border-radius: 12px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.07);
-            border-left: 5px solid #e53e3e;
+            border-left: 4px solid #e53e3e;
         }
 
         .pain-story h3 {
             color: #1a365d;
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            margin-bottom: 0.75rem;
             font-weight: 700;
         }
 
         .pain-story p {
             color: #4a5568;
-            line-height: 1.8;
-            font-size: 1.05rem;
+            line-height: 1.6;
+            font-size: 0.95rem;
         }
 
         .transition-statement {
             text-align: center;
-            margin-top: 4rem;
-            padding: 2.5rem;
+            margin-top: 3rem;
+            padding: 2rem;
             background: white;
             border-radius: 12px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.07);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .transition-statement p {
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             color: #2d3748;
             font-weight: 600;
-            margin-bottom: 1rem;
+            margin-bottom: 0.75rem;
         }
 
         .transition-statement p:last-child {
             color: #2c5282;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             font-weight: 700;
         }
 
@@ -312,7 +316,7 @@
             font-size: 1.05rem;
         }
 
-        /* Carousel Section */
+        /* Video Section */
         .carousel-section {
             padding: 5rem 0;
             background: #1a365d;
@@ -336,104 +340,77 @@
             margin-right: auto;
         }
 
-        .carousel {
-            position: relative;
-            max-width: 1100px;
+        .video-container {
+            max-width: 900px;
             margin: 0 auto;
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
             overflow: hidden;
             border-radius: 16px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
         }
 
-        .carousel-inner {
-            display: flex;
-            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .carousel-item {
-            min-width: 100%;
-            position: relative;
-        }
-
-        .carousel-item img {
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            display: block;
+            height: 100%;
             border-radius: 16px;
         }
 
-        .carousel-caption {
+        .video-link {
             position: absolute;
-            bottom: 0;
+            top: 0;
             left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(26, 54, 93, 0.95), transparent);
-            padding: 3rem 2rem 2rem;
-            color: white;
+            width: 100%;
+            height: 100%;
+            display: block;
+            cursor: pointer;
+            transition: all 0.3s;
         }
 
-        .carousel-caption h3 {
-            font-size: 1.75rem;
-            margin-bottom: 0.5rem;
-            font-weight: 700;
+        .video-link:hover {
+            transform: scale(1.02);
         }
 
-        .carousel-caption p {
-            font-size: 1.05rem;
-            opacity: 0.95;
-            line-height: 1.6;
+        .video-link img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 16px;
         }
 
-        .carousel-controls {
+        .play-button {
             position: absolute;
             top: 50%;
-            transform: translateY(-50%);
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            padding: 0 1rem;
-            pointer-events: none;
-        }
-
-        .carousel-button {
-            background: rgba(255, 255, 255, 0.9);
-            border: none;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 1.5rem;
-            color: #1a365d;
-            transition: all 0.3s;
-            pointer-events: all;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-        }
-
-        .carousel-button:hover {
-            background: white;
-            transform: scale(1.1);
-        }
-
-        .carousel-dots {
-            display: flex;
-            justify-content: center;
-            gap: 0.75rem;
-            margin-top: 2rem;
-        }
-
-        .carousel-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.4);
-            border: none;
-            cursor: pointer;
+            left: 50%;
+            transform: translate(-50%, -50%);
             transition: all 0.3s;
         }
 
-        .carousel-dot.active {
-            background: #ffd700;
-            width: 32px;
-            border-radius: 6px;
+        .video-link:hover .play-button {
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        .watch-text {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(26, 54, 93, 0.9);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .video-link:hover .watch-text {
+            opacity: 1;
         }
 
         /* Features Section */
@@ -450,55 +427,79 @@
             font-weight: 800;
         }
 
-        .feature {
-            margin-bottom: 5rem;
+        .features-grid {
             display: grid;
-            grid-template-columns: 1fr;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
             gap: 2rem;
-            max-width: 900px;
-            margin-left: auto;
-            margin-right: auto;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        .feature:last-child {
-            margin-bottom: 0;
+        .feature-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.07);
+            border-top: 4px solid #2c5282;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
         }
 
-        .feature h3 {
-            font-size: 2rem;
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 28px rgba(26, 54, 93, 0.15);
+        }
+
+        .feature-number {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background: #2c5282;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 50px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
             color: #1a365d;
             margin-bottom: 1rem;
             font-weight: 700;
+            line-height: 1.3;
         }
 
-        .feature h4 {
-            font-size: 1.3rem;
-            color: #2c5282;
-            margin-bottom: 1rem;
-            margin-top: 1.5rem;
-            font-weight: 600;
-        }
-
-        .feature p {
+        .feature-card p {
             color: #4a5568;
-            line-height: 1.8;
-            font-size: 1.1rem;
-            margin-bottom: 1rem;
+            line-height: 1.7;
+            font-size: 1.05rem;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
         }
 
-        .feature .outcome {
+        .feature-benefit {
             background: #edf2f7;
-            padding: 1.5rem;
+            padding: 1rem 1.5rem;
             border-radius: 8px;
             border-left: 4px solid #38a169;
-            margin-top: 1.5rem;
+            margin-top: auto;
         }
 
-        .feature .outcome strong {
+        .feature-benefit strong {
             color: #38a169;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .feature-benefit span {
             display: block;
-            margin-bottom: 0.5rem;
-            font-size: 1.1rem;
+            color: #2d3748;
+            font-size: 0.95rem;
+            margin-top: 0.25rem;
         }
 
         /* Industries Section */
@@ -899,10 +900,10 @@
         }
 
         .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            display: flex;
+            justify-content: center;
             gap: 2rem;
-            max-width: 1000px;
+            max-width: 600px;
             margin: 0 auto 4rem;
         }
 
@@ -913,6 +914,7 @@
             box-shadow: 0 8px 20px rgba(26, 54, 93, 0.12);
             border: 2px solid #e2e8f0;
             transition: all 0.3s;
+            width: 100%;
         }
 
         .pricing-card:hover {
@@ -923,7 +925,6 @@
 
         .pricing-card.featured {
             border: 3px solid #2c5282;
-            transform: scale(1.05);
         }
 
         .pricing-card h3 {
@@ -1203,22 +1204,15 @@
                 gap: 1rem;
             }
 
-            .carousel-caption h3 {
-                font-size: 1.3rem;
+            .play-button svg {
+                width: 60px;
+                height: 60px;
             }
 
-            .carousel-caption p {
-                font-size: 0.95rem;
-            }
-
-            .carousel-button {
-                width: 40px;
-                height: 40px;
-                font-size: 1.2rem;
-            }
-
-            .pricing-card.featured {
-                transform: none;
+            .watch-text {
+                font-size: 0.9rem;
+                padding: 0.75rem 1.5rem;
+                bottom: 1rem;
             }
         }
     </style>
@@ -1229,13 +1223,12 @@
         <div class="container">
             <div class="header-content">
                 <div class="logo">
-                    <img src="images/logo_eagle_only_128px.png" alt="Custom MRP Logo">
+                    <img src="images/logo_eagle_only_transparent.png" alt="Custom MRP Logo">
                     <span>Custom MRP</span>
                 </div>
                 <nav>
                     <a href="#solution">Solution</a>
                     <a href="#features">Features</a>
-                    <a href="#proof">Results</a>
                     <a href="#pricing">Pricing</a>
                     <a href="#contact">Get Started</a>
                 </nav>
@@ -1254,10 +1247,8 @@
                 <a href="#carousel" class="cta-button secondary">Watch 2-Minute Demo</a>
             </div>
 
-            <p class="micro-message">No setup fees. Go live in 14 days. Cancel anytime.</p>
-
             <div class="trust-strip">
-                <div class="trust-item">QuickBooks Compatible</div>
+                <div class="trust-item">Live in 5 Days</div>
                 <div class="trust-item">Built for Custom Manufacturing</div>
                 <div class="trust-item">No Consultants Required</div>
             </div>
@@ -1268,27 +1259,37 @@
     <section id="chaos" class="chaos">
         <div class="container">
             <h2>Does This Sound Familiar?</h2>
-            <p class="intro">If you run a custom manufacturing shop, these scenarios probably cost you money every single day...</p>
+            <p class="intro">If you run a custom manufacturing shop, these scenarios probably cost you money every day...</p>
 
             <div class="pain-stories">
                 <div class="pain-story">
-                    <h3>It's 4pm on Friday...</h3>
-                    <p>Your customer calls asking "Where's my booth for Monday?" You're scrambling between the shop floor, your whiteboard, and three different spreadsheets trying to figure out which wall flat is done and which is still waiting for paint.</p>
+                    <h3>"Where's My Order?"</h3>
+                    <p>Customer calls at 4pm Friday. You're scrambling between the shop floor, whiteboard, and three spreadsheets trying to figure out what's done and what's not.</p>
                 </div>
 
                 <div class="pain-story">
-                    <h3>You Finally Start That Rush Job...</h3>
-                    <p>Only to discover you don't actually have the materials. They're probably here somewhere—buried under the MDF scraps—or maybe you used them on last week's job. Now you're making an emergency run to the supplier, paying premium prices, and pushing everything else back.</p>
+                    <h3>Missing Materials</h3>
+                    <p>You start the rush job only to discover the materials aren't here. Emergency supplier run, premium prices, everything else pushed back.</p>
                 </div>
 
                 <div class="pain-story">
-                    <h3>Your Best Operator Keeps Asking...</h3>
-                    <p>"What should I work on next?" Every 30 minutes. Because there's no clear priority system. Just a whiteboard that hasn't been updated since Tuesday and a stack of work orders that may or may not be current.</p>
+                    <h3>"What's Next?"</h3>
+                    <p>Your best operator asks every 30 minutes. No clear priorities—just an outdated whiteboard and a stack of maybe-current work orders.</p>
                 </div>
 
                 <div class="pain-story">
-                    <h3>When You Quote the Next Job...</h3>
-                    <p>You're guessing. Was it 4 hours or 6 hours to build that last booth? Did the paint cost $200 or $400? You literally don't know. So you either quote too high and lose the job, or quote too low and lose money.</p>
+                    <h3>Guessing on Quotes</h3>
+                    <p>Was it 4 hours or 6? $200 or $400 in materials? You don't know. Quote too high and lose the job. Quote too low and lose money.</p>
+                </div>
+
+                <div class="pain-story">
+                    <h3>Mid-Job Changes</h3>
+                    <p>Customer wants a modification. Now you're hunting for what's done, what materials are picked, whether you can even make the change. An hour wasted finding info that should take 30 seconds.</p>
+                </div>
+
+                <div class="pain-story">
+                    <h3>Month-End Chaos</h3>
+                    <p>Billing time. Which jobs are done? What materials were used? How much labor? You're piecing together scraps of paper, memory, and incomplete spreadsheets just to invoice customers.</p>
                 </div>
             </div>
 
@@ -1324,65 +1325,15 @@
         </div>
     </section>
 
-    <!-- Carousel Section -->
+    <!-- Video Section -->
     <section id="carousel" class="carousel-section">
         <div class="container">
             <h2>See Custom MRP in Action</h2>
-            <p class="intro">Real screenshots from the actual system. This is what you and your team will use every day.</p>
+            <p class="intro">Watch a 2-minute walkthrough of the system in action.</p>
 
-            <div class="carousel">
-                <div class="carousel-inner" id="carouselInner">
-                    <div class="carousel-item">
-                        <img src="images/dashboard.png" alt="Dashboard Overview">
-                        <div class="carousel-caption">
-                            <h3>Command Center Dashboard</h3>
-                            <p>See everything happening in your shop at a glance—active work orders, low stock alerts, overdue items. Real-time visibility for instant decisions.</p>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="images/workorder_view.png" alt="Work Order Detail">
-                        <div class="carousel-caption">
-                            <h3>Complete Work Order Visibility</h3>
-                            <p>Track every product, process, and material for each job. Know exactly what's done, what's in progress, and what's waiting.</p>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="images/product_templates.png" alt="Product Templates">
-                        <div class="carousel-caption">
-                            <h3>Product Templates Save Hours</h3>
-                            <p>Build templates once for common products. Create new work orders in 5 minutes instead of 45. 80% of data entry happens automatically.</p>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="images/inventory.png" alt="Inventory Management">
-                        <div class="carousel-caption">
-                            <h3>Smart Material Management</h3>
-                            <p>Track on-hand quantities, allocations, and availability. Know exactly what's available for new jobs. No more duplicate purchases.</p>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="images/projects.png" alt="Project Management">
-                        <div class="carousel-caption">
-                            <h3>Project Coordination Made Easy</h3>
-                            <p>Group related work orders into projects. Track multiple milestones. Professional project management that customers appreciate.</p>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="images/workorders.png" alt="Work Orders List">
-                        <div class="carousel-caption">
-                            <h3>All Jobs at a Glance</h3>
-                            <p>Filter, sort, and search across all work orders. Find what you need instantly. Export data for reporting and analysis.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="carousel-controls">
-                    <button class="carousel-button" onclick="moveCarousel(-1)">‹</button>
-                    <button class="carousel-button" onclick="moveCarousel(1)">›</button>
-                </div>
+            <div class="video-container">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/xiWtqVtd1Oo?si=E5x3iy6n3lo5aq5G" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             </div>
-
-            <div class="carousel-dots" id="carouselDots"></div>
         </div>
     </section>
 
@@ -1391,68 +1342,65 @@
         <div class="container">
             <h2>Six Ways Custom MRP Takes Control of Your Chaos</h2>
 
-            <div class="feature">
-                <h3>Feature 1: See Every Job's Status in Real-Time</h3>
-                <h4>What It Means for Your Business:</h4>
-                <p>Stop hunting for answers when customers call. The dashboard shows you exactly where every job stands—materials picked, processes in progress, completion percentages.</p>
-                <p>No more checking three spreadsheets and walking the shop floor. No more "let me get back to you."</p>
-                <div class="outcome">
-                    <strong>So you can:</strong>
-                    Answer "Where's my order?" with confidence in seconds, not scrambling for an hour.
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-number">1</div>
+                    <h3>Real-Time Job Visibility</h3>
+                    <p>Dashboard shows exactly where every job stands—materials picked, processes in progress, completion percentages. Answer customer calls in seconds, not after scrambling through spreadsheets.</p>
+                    <div class="feature-benefit">
+                        <strong>RESULT:</strong>
+                        <span>No more "let me get back to you"</span>
+                    </div>
                 </div>
-            </div>
 
-            <div class="feature">
-                <h3>Feature 2: Smart Material Management That Actually Works</h3>
-                <h4>What It Means for Your Business:</h4>
-                <p>Pick materials BEFORE starting work (the system enforces it). See what's allocated to which job. Get low-stock alerts for your 16 most critical items. Support partial picking when materials trickle in (pick 5 of 7 sheets today, track the 2 still coming).</p>
-                <p>Track project-specific inventory separately and auto-hide it when jobs complete. Know exactly what you have, where it is, and what it's for.</p>
-                <div class="outcome">
-                    <strong>So you can:</strong>
-                    Never start a job without materials ready. Never buy duplicates of stuff you already have. Stop wasting money on emergency supply runs.
+                <div class="feature-card">
+                    <div class="feature-number">2</div>
+                    <h3>Smart Material Management</h3>
+                    <p>Enforce material picking before work starts. Track allocations, support partial picks, and get low-stock alerts. Project-specific inventory auto-hides when jobs complete.</p>
+                    <div class="feature-benefit">
+                        <strong>RESULT:</strong>
+                        <span>Stop duplicate purchases & emergency runs</span>
+                    </div>
                 </div>
-            </div>
 
-            <div class="feature">
-                <h3>Feature 3: Clear Priorities for Your Team</h3>
-                <h4>What It Means for Your Business:</h4>
-                <p>Every operator sees their assigned work, prioritized and clear. Work Queue shows exactly what needs to be done next. Real-time progress tracking with timers. Item-level tracking within processes (not just "cutting done" but "Frame pieces cut ✓, Window frame cut ✓, Backing pending").</p>
-                <p>No more interruptions every 30 minutes asking "what should I work on?"</p>
-                <div class="outcome">
-                    <strong>So you can:</strong>
-                    Keep your team productive without micromanaging. Know work is happening in the right order. Track accountability down to who completed each specific task.
+                <div class="feature-card">
+                    <div class="feature-number">3</div>
+                    <h3>Clear Team Priorities</h3>
+                    <p>Work Queue shows operators exactly what's next with real-time progress tracking and item-level accountability. No more constant interruptions asking "what should I work on?"</p>
+                    <div class="feature-benefit">
+                        <strong>RESULT:</strong>
+                        <span>Productive team without micromanaging</span>
+                    </div>
                 </div>
-            </div>
 
-            <div class="feature">
-                <h3>Feature 4: Product Templates That Save Hours</h3>
-                <h4>What It Means for Your Business:</h4>
-                <p>Build templates once for your common products—wall flats, door assemblies, LED light boxes, steel frameworks, tables, stages. Pre-configure materials, processes, and custom fields.</p>
-                <p>When a new job comes in, select the template, customize the 20% that's unique (dimensions, paint color, special requirements), and you're done. 80% of the data entry happens automatically.</p>
-                <div class="outcome">
-                    <strong>So you can:</strong>
-                    Create work orders in 5 minutes instead of 45. Ensure consistency across similar jobs. Reduce errors from manual data entry. Get new employees productive faster.
+                <div class="feature-card">
+                    <div class="feature-number">4</div>
+                    <h3>Time-Saving Templates</h3>
+                    <p>Build templates once for common products with pre-configured materials and processes. Customize only the 20% that's unique—80% of data entry happens automatically.</p>
+                    <div class="feature-benefit">
+                        <strong>RESULT:</strong>
+                        <span>Create work orders in 5 min instead of 45</span>
+                    </div>
                 </div>
-            </div>
 
-            <div class="feature">
-                <h3>Feature 5: Track Products, Not Just Generic Tasks</h3>
-                <h4>What It Means for Your Business:</h4>
-                <p>Custom MRP's product-centric architecture means processes belong to specific products. "Cut wood for Wall Flat A" is crystal clear, not generic "Cut wood" that could mean anything.</p>
-                <p>One work order can contain multiple unique products (Wall Flat A, Wall Flat B, and a custom table), each with its own processes and materials. Track each product's progress independently.</p>
-                <div class="outcome">
-                    <strong>So you can:</strong>
-                    Never confuse which piece you're working on. Handle variety without creating dozens of separate work orders. See exactly which products are done and which aren't.
+                <div class="feature-card">
+                    <div class="feature-number">5</div>
+                    <h3>Product-Centric Tracking</h3>
+                    <p>Processes belong to specific products—"Cut wood for Wall Flat A" vs generic tasks. Track multiple unique products in one work order, each with independent progress.</p>
+                    <div class="feature-benefit">
+                        <strong>RESULT:</strong>
+                        <span>Crystal clear what you're working on</span>
+                    </div>
                 </div>
-            </div>
 
-            <div class="feature">
-                <h3>Feature 6: Project Management for Multi-Job Orders</h3>
-                <h4>What It Means for Your Business:</h4>
-                <p>Group related work orders into projects. Track multiple date milestones (start date, due date, pencils-down date, ship date). See all work orders for a project in one place. Create work orders directly from the project screen.</p>
-                <div class="outcome">
-                    <strong>So you can:</strong>
-                    Handle complex customer projects with multiple deliverables. Keep everything organized when a single show needs 20 different components. Professional project tracking that customers can appreciate.
+                <div class="feature-card">
+                    <div class="feature-number">6</div>
+                    <h3>Project Management</h3>
+                    <p>Group related work orders into projects with multiple milestones. Track start dates, due dates, and ship dates. Perfect for complex customer orders with many components.</p>
+                    <div class="feature-benefit">
+                        <strong>RESULT:</strong>
+                        <span>Professional multi-deliverable tracking</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1466,28 +1414,49 @@
 
             <div class="industries-grid">
                 <div class="industry-card">
-                    <h3>Scenic Fabrication & Stage Set Builders</h3>
+                    <h3>Machine Shops & CNC Fabrication</h3>
+                </div>
+                <div class="industry-card">
+                    <h3>Custom Plastic Molding & Injection</h3>
+                </div>
+                <div class="industry-card">
+                    <h3>Industrial Equipment Manufacturing</h3>
+                </div>
+                <div class="industry-card">
+                    <h3>Automation & Robotics Shops</h3>
+                </div>
+                <div class="industry-card">
+                    <h3>Metal Fabrication & Welding</h3>
+                </div>
+                <div class="industry-card">
+                    <h3>Custom Electronics Assembly</h3>
+                </div>
+                <div class="industry-card">
+                    <h3>Scenic Fabrication & Stage Sets</h3>
                 </div>
                 <div class="industry-card">
                     <h3>Trade Show Booth Manufacturers</h3>
                 </div>
                 <div class="industry-card">
-                    <h3>Custom Furniture Makers</h3>
+                    <h3>Custom Furniture & Woodworking</h3>
                 </div>
                 <div class="industry-card">
-                    <h3>Props & Theatrical Elements</h3>
+                    <h3>Prototype & Product Development</h3>
                 </div>
                 <div class="industry-card">
-                    <h3>Custom Signage Companies</h3>
+                    <h3>Custom Signage & Graphics</h3>
                 </div>
                 <div class="industry-card">
-                    <h3>Event Production Fabricators</h3>
+                    <h3>Aerospace Component Manufacturing</h3>
                 </div>
                 <div class="industry-card">
-                    <h3>Themed Environment Builders</h3>
+                    <h3>Medical Device Fabrication</h3>
                 </div>
                 <div class="industry-card">
-                    <h3>5-50 Employees, Under $10M Revenue</h3>
+                    <h3>Custom Packaging Solutions</h3>
+                </div>
+                <div class="industry-card">
+                    <h3>Tool & Die Manufacturing</h3>
                 </div>
             </div>
         </div>
@@ -1528,116 +1497,16 @@
                     <p class="why-matters">Why It Matters:</p>
                     <p>Never start work without materials ready. Eliminate duplicate purchases. Know what's allocated where. Handle real-world material flow (not just perfect scenarios).</p>
                 </div>
-            </div>
 
-            <div class="comparison-grid">
-                <div class="comparison-item">
-                    <h4>VS. SPREADSHEETS:</h4>
-                    <ul>
-                        <li><strong>Spreadsheets:</strong> Familiar and free, but no enforcement, no real-time visibility, version chaos</li>
-                        <li><strong>Custom MRP:</strong> Automated workflows, real-time updates everywhere, single source of truth</li>
-                    </ul>
-                    <p class="winner">Winner: Graduate from spreadsheets without enterprise complexity</p>
+                <div class="diff-item">
+                    <h3>Where Project Management Meets Production</h3>
+                    <h4>The Problem with Other Systems:</h4>
+                    <p>Project management tools (Monday, Asana) handle timelines but ignore materials, inventory, and shop floor workflows. Traditional MRP handles production but treats projects as afterthoughts with poor milestone tracking.</p>
+                    <p class="custom-diff">The Custom MRP Difference:</p>
+                    <p>True integration of both worlds. Group work orders into projects with multiple milestones. Track project-level timelines AND production-level details. Material allocations flow across related work orders. Shop floor sees what they need to do; project managers see overall progress.</p>
+                    <p class="why-matters">Why It Matters:</p>
+                    <p>Custom manufacturers need both. You promise delivery dates to customers (project management) while managing materials and shop floor execution (production management). Custom MRP is purpose-built for this reality.</p>
                 </div>
-
-                <div class="comparison-item">
-                    <h4>VS. ENTERPRISE MRP (SAP, Oracle, NetSuite):</h4>
-                    <ul>
-                        <li><strong>Enterprise:</strong> Comprehensive but $50K-$500K, months of implementation, built for repetitive manufacturing</li>
-                        <li><strong>Custom MRP:</strong> Affordable subscription, weeks to go live, built for custom work</li>
-                    </ul>
-                    <p class="winner">Winner: Enterprise power without enterprise pain (or price)</p>
-                </div>
-
-                <div class="comparison-item">
-                    <h4>VS. PROJECT MANAGEMENT TOOLS (Monday, Asana, etc.):</h4>
-                    <ul>
-                        <li><strong>PM Tools:</strong> Flexible and modern but no material management, no shop floor focus, no manufacturing workflows</li>
-                        <li><strong>Custom MRP:</strong> Purpose-built workflows, material picking, inventory tracking, operator focus</li>
-                    </ul>
-                    <p class="winner">Winner: Project management is NOT production management</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Proof Section -->
-    <section id="proof" class="proof">
-        <div class="container">
-            <h2>Built by Manufacturers Who Understand Your Challenges</h2>
-
-            <div class="use-cases">
-                <div class="use-case">
-                    <h3>Scenic Fabrication Shop (18 employees)</h3>
-                    <h4>Before Custom MRP:</h4>
-                    <ul class="before">
-                        <li>Managing 15 active projects across spreadsheets</li>
-                        <li>Material shortages discovered mid-job (weekly)</li>
-                        <li>Customer calls took 15-20 minutes to answer (had to physically check shop)</li>
-                        <li>Quoting based on guesswork</li>
-                        <li>On-time delivery: 78%</li>
-                    </ul>
-                    <h4>After Custom MRP (30 days):</h4>
-                    <ul class="after">
-                        <li>Complete visibility across all 15 projects</li>
-                        <li>Material shortages flagged before work starts</li>
-                        <li>Customer status answers in under 60 seconds</li>
-                        <li>Quoting based on actual time/cost history</li>
-                        <li>On-time delivery: 93%</li>
-                    </ul>
-                    <blockquote>"I can finally see my whole shop in one screen. My phone rings less, my stress is down, and we're hitting deadlines. Wish I'd done this 5 years ago."</blockquote>
-                </div>
-
-                <div class="use-case">
-                    <h3>Trade Show Booth Builder (22 employees)</h3>
-                    <h4>Before Custom MRP:</h4>
-                    <ul class="before">
-                        <li>Creating work orders took 45 minutes each</li>
-                        <li>Duplicate material purchases (monthly)</li>
-                        <li>Shop floor constantly asking "what's next?"</li>
-                        <li>Rush jobs caused weekend overtime</li>
-                    </ul>
-                    <h4>After Custom MRP:</h4>
-                    <ul class="after">
-                        <li>Work orders created in under 5 minutes (templates)</li>
-                        <li>Eliminated 60% of duplicate material purchases</li>
-                        <li>Clear work queue for operators (no more asking)</li>
-                        <li>Rush jobs absorbed without weekend overtime</li>
-                    </ul>
-                    <blockquote>"Product templates changed everything. We build a lot of similar booths with variations—now we just tweak the template instead of starting from scratch. Massive time saver."</blockquote>
-                </div>
-
-                <div class="use-case">
-                    <h3>Custom Furniture Shop (12 employees)</h3>
-                    <h4>Before Custom MRP:</h4>
-                    <ul class="before">
-                        <li>Lost track of which custom options went with which order</li>
-                        <li>Quality issues couldn't be traced back</li>
-                        <li>No data for accurate quoting</li>
-                        <li>Materials "probably somewhere in the shop"</li>
-                    </ul>
-                    <h4>After Custom MRP:</h4>
-                    <ul class="after">
-                        <li>Product-centric tracking keeps every piece clear</li>
-                        <li>Item-level tracking shows who did what work</li>
-                        <li>Historical data for accurate quotes</li>
-                        <li>Material allocation prevents surprises</li>
-                    </ul>
-                    <blockquote>"Custom MRP understands that every piece of furniture we make is different. Other systems wanted us to have 'standard products'—but that's not how we work. This system gets it."</blockquote>
-                </div>
-            </div>
-
-            <div class="results-metrics">
-                <h3>Typical Results (Based on 50+ Custom Manufacturing Shops)</h3>
-                <ul>
-                    <li><strong>20-40% reduction</strong> in expedite material purchases</li>
-                    <li><strong>10-25% reduction</strong> in WIP (work in progress) inventory value</li>
-                    <li><strong>Quote prep time:</strong> From 2-4 hours down to 15-30 minutes</li>
-                    <li><strong>Customer inquiry response:</strong> From 15-20 minutes down to under 2 minutes</li>
-                    <li><strong>Work order creation:</strong> From 30-60 minutes down to 5-10 minutes</li>
-                    <li><strong>Material shortage surprises:</strong> Down 60-80%</li>
-                    <li><strong>On-time delivery improvement:</strong> Average 12-15 percentage points</li>
-                </ul>
             </div>
         </div>
     </section>
@@ -1645,36 +1514,36 @@
     <!-- Implementation Section -->
     <section id="implementation" class="implementation">
         <div class="container">
-            <h2>Go Live in 14 Days, Not 6 Months</h2>
-            <p class="intro">No months of setup. No complicated training. Your team can be productive in weeks, not quarters.</p>
+            <h2>Go Live in 5 Days, Not 6 Months</h2>
+            <p class="intro">No months of setup. No complicated training. Your team can be productive in days, not quarters.</p>
 
             <div class="timeline">
                 <div class="timeline-item">
-                    <h3>WEEK 1: Setup & Configuration</h3>
+                    <h3>DAY 1-2: Setup & Configuration</h3>
                     <ul>
                         <li>Import your existing data (parts, customers, vendors)</li>
-                        <li>Build product templates for your 10-20 most common items</li>
+                        <li>Build product templates for your most common items</li>
                         <li>Configure your departments and users</li>
                         <li>White-glove onboarding assistance included</li>
                     </ul>
                 </div>
 
                 <div class="timeline-item">
-                    <h3>WEEK 2: Training & Pilot</h3>
+                    <h3>DAY 3: Training & Pilot</h3>
                     <ul>
-                        <li>Two training sessions for your team (included)</li>
+                        <li>Live training session for your team (included)</li>
                         <li>Pilot Custom MRP on 1-2 product families</li>
-                        <li>Run parallel with existing system</li>
                         <li>Adjust and refine based on feedback</li>
+                        <li>Prepare for full cutover</li>
                     </ul>
                 </div>
 
                 <div class="timeline-item">
-                    <h3>WEEK 3-4: Go Live & Optimize</h3>
+                    <h3>DAY 4-5: Go Live</h3>
                     <ul>
                         <li>Full production cutover</li>
-                        <li>Stand beside you during first week of live operation</li>
-                        <li>Optimization check-in at 30 days</li>
+                        <li>Live support during first production day</li>
+                        <li>Real-time troubleshooting and optimization</li>
                         <li>Ongoing support via chat and email</li>
                     </ul>
                 </div>
@@ -1698,69 +1567,30 @@
     <section id="pricing" class="pricing">
         <div class="container">
             <h2>Pricing That Makes Sense</h2>
-            <p class="intro">Affordable subscription. No setup fees. Cancel anytime.</p>
+            <p class="intro">Affordable subscription. No setup fees.</p>
 
             <div class="pricing-grid">
-                <div class="pricing-card">
-                    <h3>STARTER PLAN</h3>
-                    <div class="price">$499<span>/month</span></div>
-                    <div class="users">Up to 5 full users included</div>
+                <div class="pricing-card featured">
+                    <h3>EVERYTHING INCLUDED</h3>
+                    <div class="price">$400<span>/month</span></div>
+                    <div class="users">All features. All users. One simple price.</div>
                     <ul>
-                        <li>Unlimited shop-floor kiosk users (free)</li>
-                        <li>Unlimited viewer roles (free)</li>
+                        <li>Unlimited users (shop floor & office)</li>
                         <li>Work order management</li>
                         <li>Product templates</li>
                         <li>Material picking workflow</li>
                         <li>Inventory tracking</li>
-                        <li>Dashboard and reporting</li>
+                        <li>Dashboard and advanced reporting</li>
                         <li>Project management</li>
                         <li>Item-level tracking</li>
-                        <li>14-day implementation support</li>
-                        <li>Business-hours support</li>
-                    </ul>
-                    <a href="#contact" class="cta-button">Get Started</a>
-                </div>
-
-                <div class="pricing-card featured">
-                    <h3>GROWTH PLAN</h3>
-                    <div class="price">$899<span>/month</span></div>
-                    <div class="users">Up to 15 full users included</div>
-                    <ul>
-                        <li>Everything in Starter, plus:</li>
-                        <li>Advanced reporting</li>
                         <li>Custom fields per product template</li>
-                        <li>Priority support</li>
+                        <li>5-day implementation support</li>
+                        <li>Priority support (chat and email)</li>
                         <li>Dedicated onboarding specialist</li>
-                        <li>Quarterly optimization reviews</li>
+                        <li>Video training library</li>
+                        <li>Ongoing optimization support</li>
                     </ul>
                     <a href="#contact" class="cta-button">Get Started</a>
-                </div>
-            </div>
-
-            <div class="cost-comparison">
-                <h3>The Cost of Chaos vs. Custom MRP</h3>
-                <div class="cost-grid">
-                    <div class="cost-item">
-                        <h4>Duplicate material purchases</h4>
-                        <div class="amount">~$500/month</div>
-                    </div>
-                    <div class="cost-item">
-                        <h4>Late delivery penalties</h4>
-                        <div class="amount">~$1,000/month</div>
-                    </div>
-                    <div class="cost-item">
-                        <h4>Lost time from interruptions</h4>
-                        <div class="amount">~$2,000/month</div>
-                    </div>
-                    <div class="cost-item">
-                        <h4>Quote inaccuracy lost profit</h4>
-                        <div class="amount">~$3,000/month</div>
-                    </div>
-                </div>
-                <div class="total-chaos-cost">
-                    <h4>Total Cost of Chaos:</h4>
-                    <div class="amount">$6,500+/month</div>
-                    <p>Custom MRP pays for itself by eliminating just ONE of these problems.</p>
                 </div>
             </div>
         </div>
@@ -1784,7 +1614,7 @@
 
                 <div class="faq-item">
                     <h3>We tried MRP software before and it was a disaster.</h3>
-                    <p>We hear this constantly. Here's why Custom MRP is different: No modules to buy. No consultants required. No 6-month implementation. Product-centric design (not generic manufacturing). Built specifically for high-mix, low-volume shops. You can go live in 14 days with our hands-on onboarding.</p>
+                    <p>We hear this constantly. Here's why Custom MRP is different: No modules to buy. No consultants required. No 6-month implementation. Product-centric design (not generic manufacturing). Built specifically for high-mix, low-volume shops. You can go live in 5 days with our hands-on onboarding.</p>
                 </div>
 
                 <div class="faq-item">
@@ -1827,10 +1657,10 @@
             </div>
 
             <div class="implementation-promise">
-                <h3>You could be running Custom MRP in 14 days.</h3>
-                <p>Week 1: Setup and templates</p>
-                <p>Week 2: Training and pilot</p>
-                <p>Week 3-4: Go live with support</p>
+                <h3>You could be running Custom MRP in 5 days.</h3>
+                <p>Day 1-2: Setup and templates</p>
+                <p>Day 3: Training and pilot</p>
+                <p>Day 4-5: Go live with support</p>
                 <p style="margin-top: 1rem; font-weight: 600;">No consultants. No hidden fees. No surprises.</p>
             </div>
 
@@ -1843,7 +1673,7 @@
     <footer>
         <div class="container">
             <div class="footer-logo">
-                <img src="images/logo_eagle_only_128px.png" alt="Custom MRP Logo">
+                <img src="images/logo_eagle_only_transparent.png" alt="Custom MRP Logo">
             </div>
             <p>&copy; 2025 Custom MRP. Built for custom manufacturers who refuse to compromise.</p>
             <p style="max-width: 800px; margin: 1.5rem auto;">Software designed by manufacturers, for manufacturers. No rigid workflows. No forcing custom work into assembly-line templates. Just visibility, control, and profit.</p>
@@ -1858,65 +1688,6 @@
     </footer>
 
     <script>
-        // Carousel functionality
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.carousel-item');
-        const totalSlides = slides.length;
-        let autoplayInterval;
-
-        // Create dots
-        const dotsContainer = document.getElementById('carouselDots');
-        for (let i = 0; i < totalSlides; i++) {
-            const dot = document.createElement('button');
-            dot.classList.add('carousel-dot');
-            if (i === 0) dot.classList.add('active');
-            dot.onclick = () => goToSlide(i);
-            dotsContainer.appendChild(dot);
-        }
-
-        function updateCarousel() {
-            const carouselInner = document.getElementById('carouselInner');
-            carouselInner.style.transform = `translateX(-${currentSlide * 100}%)`;
-
-            // Update dots
-            const dots = document.querySelectorAll('.carousel-dot');
-            dots.forEach((dot, index) => {
-                dot.classList.toggle('active', index === currentSlide);
-            });
-        }
-
-        function moveCarousel(direction) {
-            currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
-            updateCarousel();
-            resetAutoplay();
-        }
-
-        function goToSlide(index) {
-            currentSlide = index;
-            updateCarousel();
-            resetAutoplay();
-        }
-
-        function autoplay() {
-            autoplayInterval = setInterval(() => {
-                currentSlide = (currentSlide + 1) % totalSlides;
-                updateCarousel();
-            }, 5000);
-        }
-
-        function resetAutoplay() {
-            clearInterval(autoplayInterval);
-            autoplay();
-        }
-
-        // Start autoplay
-        autoplay();
-
-        // Pause on hover
-        const carousel = document.querySelector('.carousel');
-        carousel.addEventListener('mouseenter', () => clearInterval(autoplayInterval));
-        carousel.addEventListener('mouseleave', () => autoplay());
-
         // Smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
